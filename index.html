@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>みんなの珈琲 — あなたに合う豆を見つける</title>
+<meta name="description" content="8つの質問に答えるだけで、26種の中からあなたに合うコーヒー豆を診断します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:   #f7f2eb;
+  --cream2:  #ede6d8;
+  --brown1:  #2c1a0e;
+  --brown2:  #5c3520;
+  --brown3:  #8b5e3c;
+  --brown4:  #b8935a;
+  --brown5:  #d4b483;
+  --light:   #faf7f3;
+  --border:  #d6ccc0;
+  --text:    #1e1208;
+  --sub:     #6b5340;
+  --roast-light:    #c8a96e;
+  --roast-ml:       #9b6b3a;
+  --roast-medium:   #6b3e1e;
+  --roast-md:       #3d200e;
+  --roast-dark:     #150804;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--text);
+  font-family:'Noto Serif JP',serif;
+  min-height:100vh;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:60px 24px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(180,130,70,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(140,90,40,.12) 0%, transparent 60%),
+    var(--cream);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b5e3c' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.logo{
+  font-family:'Shippori Mincho',serif;
+  font-size:13px;letter-spacing:.4em;color:var(--brown3);
+  text-transform:uppercase;margin-bottom:32px;
+  opacity:0;animation:fadeUp .8s .1s forwards;
+}
+.hero-title{
+  font-family:'Shippori Mincho',serif;
+  font-size:clamp(36px,7vw,68px);
+  font-weight:600;line-height:1.25;
+  color:var(--brown1);margin-bottom:20px;
+  opacity:0;animation:fadeUp .9s .25s forwards;
+}
+.hero-title span{color:var(--brown3)}
+.hero-sub{
+  font-size:clamp(14px,2vw,17px);color:var(--sub);
+  line-height:1.8;max-width:480px;margin:0 auto 40px;
+  opacity:0;animation:fadeUp .9s .4s forwards;
+}
+.hero-btn{
+  display:inline-block;padding:16px 44px;
+  background:var(--brown2);color:var(--cream);
+  font-family:'Shippori Mincho',serif;font-size:15px;letter-spacing:.1em;
+  border:none;border-radius:2px;cursor:pointer;
+  transition:background .2s,transform .15s;
+  opacity:0;animation:fadeUp .9s .55s forwards;
+}
+.hero-btn:hover{background:var(--brown1);transform:translateY(-2px)}
+.hero-note{font-size:12px;color:var(--brown4);margin-top:14px;
+  opacity:0;animation:fadeUp .9s .7s forwards;}
+.scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  opacity:0;animation:fadeUp .9s 1.2s forwards;
+}
+.scroll-hint span{font-size:11px;letter-spacing:.2em;color:var(--brown4)}
+.scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,var(--brown4),transparent)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── QUIZ SECTION ── */
+.quiz-section{
+  max-width:680px;margin:0 auto;
+  padding:80px 24px 120px;
+  display:none;
+}
+.quiz-section.visible{display:block}
+
+.progress-wrap{margin-bottom:2.5rem}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:8px;letter-spacing:.05em}
+.progress-track{height:2px;background:var(--cream2);border-radius:1px;overflow:hidden}
+.progress-fill{height:100%;background:var(--brown2);border-radius:1px;transition:width .5s ease}
+
+.step{display:none}.step.on{display:block;animation:fadeUp .4s forwards}
+.step-num{font-size:11px;letter-spacing:.3em;color:var(--brown4);margin-bottom:10px}
+.step-q{font-family:'Shippori Mincho',serif;font-size:clamp(18px,3.5vw,24px);font-weight:600;color:var(--brown1);margin-bottom:6px;line-height:1.5}
+.step-sub{font-size:13px;color:var(--sub);margin-bottom:24px;line-height:1.6}
+
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px;margin-bottom:2rem}
+.opt{
+  border:1px solid var(--border);border-radius:4px;
+  padding:14px 14px;background:var(--light);
+  cursor:pointer;text-align:left;
+  transition:border-color .15s,background .15s,transform .1s;
+}
+.opt:hover{border-color:var(--brown3);background:var(--cream2);transform:translateY(-1px)}
+.opt.sel{border-color:var(--brown2);background:var(--cream2);box-shadow:inset 0 0 0 1px var(--brown2)}
+.opt-icon{font-size:20px;margin-bottom:6px}
+.opt-title{font-size:13px;font-weight:600;color:var(--brown1);line-height:1.3}
+.opt-sub{font-size:11px;color:var(--sub);margin-top:3px}
+
+.nav{display:flex;gap:10px;align-items:center}
+.btn{border:1px solid var(--border);border-radius:2px;padding:10px 22px;background:transparent;cursor:pointer;font-size:13px;font-family:'Noto Serif JP',serif;color:var(--sub);transition:background .15s,border-color .15s}
+.btn:hover{background:var(--cream2);border-color:var(--brown3)}
+.btn-p{background:var(--brown2);color:var(--cream);border-color:var(--brown2)}
+.btn-p:hover{background:var(--brown1)}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+
+/* ── RESULT ── */
+.result-wrap{animation:fadeUp .5s forwards}
+.result-hero{
+  background:linear-gradient(135deg,var(--brown1) 0%,var(--brown2) 100%);
+  border-radius:6px;padding:32px;margin-bottom:20px;color:var(--cream);
+}
+.result-tag{font-size:11px;letter-spacing:.3em;color:var(--brown5);margin-bottom:10px}
+.result-name{font-family:'Shippori Mincho',serif;font-size:clamp(18px,4vw,26px);font-weight:600;margin-bottom:6px;line-height:1.4}
+.result-origin{font-size:13px;color:var(--brown5);margin-bottom:16px}
+.fam-tags{display:flex;flex-wrap:wrap;gap:6px}
+.fam-tag{font-size:11px;padding:4px 12px;border-radius:999px;border:1px solid rgba(212,180,131,.4);color:var(--brown5)}
+
+.result-body{background:var(--light);border:1px solid var(--border);border-radius:6px;padding:24px;margin-bottom:16px}
+.rrow{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--cream2);font-size:13px}
+.rrow:last-child{border:none}
+.rl{color:var(--sub)}.rv{font-weight:600;color:var(--brown1);text-align:right;max-width:65%}
+
+.profile-section{margin-top:18px}
+.profile-title{font-size:11px;letter-spacing:.15em;color:var(--sub);margin-bottom:12px}
+.bar-row{margin-bottom:9px}
+.bar-label{font-size:12px;color:var(--sub);margin-bottom:3px}
+.bar-track{height:4px;background:var(--cream2);border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;background:var(--brown3);border-radius:2px;transition:width .8s ease}
+
+.why-box{background:var(--cream2);border-radius:4px;padding:14px 16px;margin-top:16px;font-size:13px;line-height:1.7;color:var(--sub)}
+.warn-box{background:#fff8e8;border:1px solid #e8d08a;border-radius:4px;padding:12px 14px;margin-top:10px;font-size:12px;line-height:1.6;color:#7a5f10}
+
+.alts-section{margin-top:8px}
+.alts-title{font-size:11px;letter-spacing:.2em;color:var(--sub);margin-bottom:10px}
+.alt-card{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid var(--border);border-radius:4px;margin-bottom:8px;background:var(--light)}
+.alt-left .alt-rank{font-size:10px;color:var(--brown4);letter-spacing:.15em;margin-bottom:3px}
+.alt-left .alt-name{font-size:13px;font-weight:600;color:var(--brown1)}
+.alt-left .alt-meta{font-size:11px;color:var(--sub);margin-top:2px}
+.alt-pct{font-size:12px;color:var(--sub);text-align:right}
+
+.action-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.restart-btn{margin-top:16px;font-size:12px;color:var(--brown4);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:'Noto Serif JP',serif}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);border-top:1px solid var(--cream2);background:var(--cream)}
+
+/* ── UTIL ── */
+@media(max-width:480px){.opts{grid-template-columns:1fr 1fr}.hero-title{font-size:32px}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <p class="logo">Minna no Coffee</p>
+  <h1 class="hero-title">あなただけの<br><span>一杯</span>を、見つけよう。</h1>
+  <p class="hero-sub">8つの質問に答えるだけで、26種のコーヒー豆の中から<br>あなたの好みにぴったりの一杯を診断します。</p>
+  <button class="hero-btn" onclick="startQuiz()">診断をはじめる</button>
+  <p class="hero-note">所要時間 約1分 ／ 無料</p>
+  <div class="scroll-hint"><span>SCROLL</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quizSection">
+  <div class="progress-wrap">
+    <div class="progress-label"><span id="progLabel">質問 1 / 8</span><span id="progPct">12%</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progFill" style="width:12%"></div></div>
+  </div>
+
+  <!-- Q0 -->
+  <div class="step on" id="t0">
+    <p class="step-num">QUESTION 01</p>
+    <p class="step-q">普段、コーヒーに何かを加えますか？</p>
+    <p class="step-sub">飲み方の基本スタイルを教えてください</p>
+    <div class="opts" data-q="0">
+      <button class="opt" data-v="black"><div class="opt-icon">☕</div><div class="opt-title">ブラック</div><div class="opt-sub">何も加えない</div></button>
+      <button class="opt" data-v="milk"><div class="opt-icon">🥛</div><div class="opt-title">ミルク系</div><div class="opt-sub">ラテ・カプチーノ</div></button>
+      <button class="opt" data-v="sugar"><div class="opt-icon">🍯</div><div class="opt-title">砂糖あり</div><div class="opt-sub">甘め派</div></button>
+      <button class="opt" data-v="both"><div class="opt-icon">✨</div><div class="opt-title">両方</div><div class="opt-sub">ミルク＋砂糖</div></button>
+    </div>
+    <div class="nav"><button class="btn btn-p" id="b0" disabled onclick="nx(0)">次へ →</button></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="step" id="t1">
+    <p class="step-num">QUESTION 02</p>
+    <p class="step-q">苦味に対してどう感じますか？</p>
+    <p class="step-sub">率直に教えてください</p>
+    <div class="opts" data-q="1">
+      <button class="opt" data-v="love_bitter"><div class="opt-icon">🔥</div><div class="opt-title">大好き</div><div class="opt-sub">深いコクが好み</div></button>
+      <button class="opt" data-v="ok_bitter"><div class="opt-icon">😊</div><div class="opt-title">許容範囲</div><div class="opt-sub">苦すぎなければOK</div></button>
+      <button class="opt" data-v="dislike_bitter"><div class="opt-icon">😅</div><div class="opt-title">苦手</div><div class="opt-sub">できれば避けたい</div></button>
+    </div>
+    <div class="nav"><button class="btn" onclick="bk(1)">← 戻る</button><button class="btn btn-p" id="b1" disabled onclick="nx(1)">次へ →</button></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="step" id="t2">
+    <p class="step-num">QUESTION 03</p>
+    <p class="step-q">酸味はどのくらい好きですか？</p>
+    <p class="step-sub">フルーツのような明るい酸味のこと</p>
+    <div class="opts" data-q="2">
+      <button class="opt" data-v="love_acid"><div class="opt-icon">🍋</div><div class="opt-title">大好き</div><div class="opt-sub">爽やかな酸が好き</div></button>
+      <button class="opt" data-v="ok_acid"><div class="opt-icon">⚖️</div><div class="opt-title">程よく</div><div class="opt-sub">少しあるくらい</div></button>
+      <button class="opt" data-v="no_acid"><div class="opt-icon">🚫</div><div class="opt-title">少なく</div><div class="opt-sub">酸っぱいのは苦手</div></button>
+    </div>
+    <div class="nav"><button class="btn" onclick="bk(2)">← 戻る</button><button class="btn btn-p" id="b2" disabled onclick="nx(2)">次へ →</button></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="step" id="t3">
+    <p class="step-num">QUESTION 04</p>
+    <p class="step-q">感じたい香り・味のイメージは？</p>
+    <p class="step-sub">最大2つまで選択 ／ こだわらない場合は「おまかせ」</p>
+    <div class="opts" data-q="3" data-multi="2">
+      <button class="opt" data-v="floral"><div class="opt-icon">🌸</div><div class="opt-title">フローラル</div><div class="opt-sub">華やか・ジャスミン</div></button>
+      <button class="opt" data-v="fruity"><div class="opt-icon">🍓</div><div class="opt-title">フルーティ</div><div class="opt-sub">ベリー・柑橘</div></button>
+      <button class="opt" data-v="choco"><div class="opt-icon">🍫</div><div class="opt-title">チョコ・ナッツ</div><div class="opt-sub">深いコク</div></button>
+      <button class="opt" data-v="caramel"><div class="opt-icon">🍮</div><div class="opt-title">キャラメル</div><div class="opt-sub">甘くまろやか</div></button>
+      <button class="opt" data-v="spice"><div class="opt-icon">🌶️</div><div class="opt-title">スパイシー</div><div class="opt-sub">シナモン系</div></button>
+      <button class="opt" data-v="earthy"><div class="opt-icon">🌿</div><div class="opt-title">アーシー</div><div class="opt-sub">ウッディ・土</div></button>
+      <button class="opt" data-v="balanced" data-excl="1"><div class="opt-icon">☯️</div><div class="opt-title">おまかせ</div><div class="opt-sub">バランス重視</div></button>
+    </div>
+    <div class="nav"><button class="btn" onclick="bk(3)">← 戻る</button><button class="btn btn-p" id="b3" disabled onclick="nx(3)">次へ →</button></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="step" id="t4">
+    <p class="step-num">QUESTION 05</p>
+    <p class="step-q">自宅でどう淹れていますか？</p>
+    <p class="step-sub">これから試したい方法でも構いません</p>
+    <div class="opts" data-q="4">
+      <button class="opt" data-v="drip"><div class="opt-icon">☕</div><div class="opt-title">ペーパードリップ</div><div class="opt-sub">すっきりクリーン</div></button>
+      <button class="opt" data-v="frenchpress"><div class="opt-icon">🫖</div><div class="opt-title">フレンチプレス</div><div class="opt-sub">コク深め</div></button>
+      <button class="opt" data-v="espresso"><div class="opt-icon">⚡</div><div class="opt-title">エスプレッソ系</div><div class="opt-sub">マシン・モカポット</div></button>
+      <button class="opt" data-v="coldbrew"><div class="opt-icon">🧊</div><div class="opt-title">水出し</div><div class="opt-sub">マイルドに</div></button>
+      <button class="opt" data-v="instant"><div class="opt-icon">📦</div><div class="opt-title">手軽に</div><div class="opt-sub">インスタント等</div></button>
+    </div>
+    <div class="nav"><button class="btn" onclick="bk(4)">← 戻る</button><button class="btn btn-p" id="b4" disabled onclick="nx(4)">次へ →</button></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="step" id="t5">
+    <p class="step-num">QUESTION 06</p>
+    <p class="step-q">いつ飲むことが多いですか？</p>
+    <p class="step-sub">主なシーンを教えてください</p>
+    <div class="opts" data-q="5">
+      <button class="opt" data-v="morning"><div class="opt-icon">🌅</div><div class="opt-title">朝一番</div><div class="opt-sub">目覚めのルーティン</div></button>
+      <button class="opt" data-v="work"><div class="opt-icon">💼</div><div class="opt-title">仕事・集中時</div><div class="opt-sub">デスクで</div></button>
+      <button class="opt" data-v="relax"><div class="opt-icon">🛋️</div><div class="opt-title">リラックス</div><div class="opt-sub">休憩・カフェで</div></button>
+      <button class="opt" data-v="afternoon"><div class="opt-icon">🌇</div><div class="opt-title">午後・夕方</div><div class="opt-sub">食後など</div></button>
+    </div>
+    <div class="nav"><button class="btn" onclick="bk(5)">← 戻る</button><button class="btn btn-p" id="b5" disabled onclick="nx(5)">次へ →</button></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="step" id="t6">
+    <p class="step-num">QUESTION 07</p>
+    <p class="step-q">カフェインについて</p>
+    <p class="step-sub">体や生活リズムへの影響はありますか？</p>
+    <div class="opts" data-q="6">
+      <button class="opt" data-v="full"><div class="opt-icon">⚡</div><div class="opt-title">問題なし</div><div class="opt-sub">気にしない</div></button>
+      <button class="opt" data-v="moderate"><div class="opt-icon">🌙</div><div class="opt-title">少なめがいい</div><div class="opt-sub">夕方以降は控える</div></button>
+      <button class="opt" data-v="decaf"><div class="opt-icon">🍃</div><div class="opt-title">デカフェ希望</div><div class="opt-sub">カフェインを避けたい</div></button>
+    </div>
+    <div class="nav"><button class="btn" onclick="bk(6)">← 戻る</button><button class="btn btn-p" id="b6" disabled onclick="nx(6)">次へ →</button></div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="step" id="t7">
+    <p class="step-num">QUESTION 08</p>
+    <p class="step-q">1袋あたりの予算は？</p>
+    <p class="step-sub">200g前後の豆を基準にした目安</p>
+    <div class="opts" data-q="7">
+      <button class="opt" data-v="low"><div class="opt-icon">🪙</div><div class="opt-title">〜¥1,500</div><div class="opt-sub">デイリー向け</div></button>
+      <button class="opt" data-v="mid"><div class="opt-icon">💰</div><div class="opt-title">¥1,500〜2,500</div><div class="opt-sub">スペシャルティ</div></button>
+      <button class="opt" data-v="high"><div class="opt-icon">💎</div><div class="opt-title">¥2,500〜</div><div class="opt-sub">希少・受注焙煎</div></button>
+      <button class="opt" data-v="any"><div class="opt-icon">∞</div><div class="opt-title">こだわらない</div><div class="opt-sub">味を最優先</div></button>
+    </div>
+    <div class="nav"><button class="btn" onclick="bk(7)">← 戻る</button><button class="btn btn-p" id="b7" disabled onclick="fin()">結果を見る ✦</button></div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="step" id="res">
+    <div class="result-wrap" id="resultWrap"></div>
+    <button class="restart-btn" onclick="restart()">もう一度診断する</button>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 みんなの珈琲 — あなたに合うコーヒー豆を見つける診断サイト</p>
+  <p style="margin-top:6px;font-size:11px">本サイトはAmazonアソシエイト・楽天アフィリエイトに参加予定です</p>
+</footer>
+
+<script>
+// ===== COFFEE ENGINE (最適化済み 26豆) =====
+const CATALOG=[
+ {id:"eth_yir_w_l",name:"エチオピア イルガチェフェ ウォッシュド（浅煎り）",origin:"エチオピア",roast:"ライト",fam:["floral","citrus"],body:2,acid:9,aroma:10,sweet:4,bit:1,clar:9,decaf:false,price:"low"},
+ {id:"eth_yir_n_ml",name:"エチオピア イルガチェフェ ナチュラル",origin:"エチオピア",roast:"ミディアムライト",fam:["floral","berry"],body:4,acid:8,aroma:9,sweet:6,bit:2,clar:6,decaf:false,price:"low"},
+ {id:"eth_guji_n_m",name:"エチオピア グジ ナチュラル",origin:"エチオピア",roast:"ミディアム",fam:["berry","winey"],body:5,acid:7,aroma:9,sweet:7,bit:3,clar:5,decaf:false,price:"mid"},
+ {id:"eth_anaerobic_ml",name:"エチオピア アナエロビック",origin:"エチオピア",roast:"ミディアムライト",fam:["berry","winey","ferment"],body:5,acid:7,aroma:9,sweet:7,bit:3,clar:4,decaf:false,price:"high"},
+ {id:"kenya_aa_w_m",name:"ケニア AA ウォッシュド",origin:"ケニア",roast:"ミディアム",fam:["berry","citrus"],body:6,acid:9,aroma:8,sweet:5,bit:3,clar:8,decaf:false,price:"mid"},
+ {id:"kenya_aa_w_md",name:"ケニア AA 中深煎り",origin:"ケニア",roast:"ミディアムダーク",fam:["berry","choco"],body:7,acid:6,aroma:7,sweet:5,bit:5,clar:7,decaf:false,price:"mid"},
+ {id:"col_huila_w_m",name:"コロンビア ウイラ ウォッシュド",origin:"コロンビア",roast:"ミディアム",fam:["citrus","caramel"],body:5,acid:6,aroma:6,sweet:6,bit:4,clar:7,decaf:false,price:"low"},
+ {id:"col_huila_w_md",name:"コロンビア ウイラ 中深煎り",origin:"コロンビア",roast:"ミディアムダーク",fam:["caramel","nutty"],body:6,acid:5,aroma:6,sweet:6,bit:6,clar:6,decaf:false,price:"low"},
+ {id:"col_decaf_m",name:"コロンビア デカフェ",origin:"コロンビア",roast:"ミディアム",fam:["caramel","choco"],body:5,acid:5,aroma:5,sweet:6,bit:4,clar:6,decaf:true,price:"mid"},
+ {id:"bra_cer_n_m",name:"ブラジル セラード ナチュラル",origin:"ブラジル",roast:"ミディアム",fam:["nutty","choco"],body:6,acid:3,aroma:5,sweet:7,bit:5,clar:4,decaf:false,price:"low"},
+ {id:"bra_cer_n_md",name:"ブラジル セラード 中深煎り",origin:"ブラジル",roast:"ミディアムダーク",fam:["choco","nutty","caramel"],body:8,acid:3,aroma:5,sweet:7,bit:7,clar:4,decaf:false,price:"low"},
+ {id:"bra_dark",name:"ブラジル ダークロースト",origin:"ブラジル",roast:"ダーク",fam:["choco"],body:9,acid:1,aroma:4,sweet:5,bit:9,clar:3,decaf:false,price:"low"},
+ {id:"bra_decaf_md",name:"ブラジル デカフェ 中深煎り",origin:"ブラジル",roast:"ミディアムダーク",fam:["choco","nutty"],body:6,acid:3,aroma:4,sweet:6,bit:6,clar:4,decaf:true,price:"mid"},
+ {id:"gua_ant_w_m",name:"グアテマラ アンティグア ウォッシュド",origin:"グアテマラ",roast:"ミディアム",fam:["choco","caramel","nutty"],body:5,acid:5,aroma:6,sweet:6,bit:4,clar:6,decaf:false,price:"low"},
+ {id:"gua_ant_w_md",name:"グアテマラ アンティグア 中深煎り",origin:"グアテマラ",roast:"ミディアムダーク",fam:["choco","spice"],body:7,acid:4,aroma:6,sweet:6,bit:6,clar:5,decaf:false,price:"low"},
+ {id:"cos_tar_w_m",name:"コスタリカ タラス ウォッシュド",origin:"コスタリカ",roast:"ミディアム",fam:["citrus","caramel","balanced"],body:5,acid:5,aroma:6,sweet:5,bit:5,clar:8,decaf:false,price:"mid"},
+ {id:"cos_honey_m",name:"コスタリカ ハニープロセス",origin:"コスタリカ",roast:"ミディアム",fam:["caramel","stone","sweet"],body:6,acid:5,aroma:6,sweet:8,bit:4,clar:6,decaf:false,price:"mid"},
+ {id:"sum_man_m",name:"スマトラ マンデリン",origin:"スマトラ",roast:"ミディアム",fam:["earthy","spice"],body:7,acid:3,aroma:6,sweet:3,bit:6,clar:3,decaf:false,price:"low"},
+ {id:"sum_man_md",name:"スマトラ マンデリン 中深煎り",origin:"スマトラ",roast:"ミディアムダーク",fam:["earthy","spice","smoky"],body:8,acid:2,aroma:6,sweet:2,bit:8,clar:3,decaf:false,price:"low"},
+ {id:"sum_man_dk",name:"スマトラ マンデリン ダークロースト",origin:"スマトラ",roast:"ダーク",fam:["earthy","smoky"],body:10,acid:1,aroma:5,sweet:1,bit:10,clar:2,decaf:false,price:"low"},
+ {id:"sum_man_l",name:"スマトラ マンデリン 浅煎り",origin:"スマトラ",roast:"ライト",fam:["earthy","fruity_unusual"],body:3,acid:6,aroma:7,sweet:3,bit:3,clar:4,decaf:false,price:"mid"},
+ {id:"pan_geisha_l",name:"パナマ ゲイシャ ウォッシュド",origin:"パナマ",roast:"ライト",fam:["floral","citrus","jasmine"],body:3,acid:8,aroma:10,sweet:6,bit:2,clar:10,decaf:false,price:"high"},
+ {id:"yemen_mocha_n",name:"イエメン モカマタリ ナチュラル",origin:"イエメン",roast:"ミディアム",fam:["winey","berry","spice","choco"],body:6,acid:6,aroma:8,sweet:6,bit:4,clar:4,decaf:false,price:"high"},
+ {id:"guatemala_honey_m",name:"グアテマラ ハニープロセス",origin:"グアテマラ",roast:"ミディアム",fam:["caramel","stone","choco"],body:6,acid:5,aroma:6,sweet:7,bit:5,clar:6,decaf:false,price:"mid"},
+ {id:"colombia_geisha_l",name:"コロンビア ゲイシャ ウォッシュド",origin:"コロンビア",roast:"ミディアムライト",fam:["floral","citrus"],body:4,acid:7,aroma:9,sweet:6,bit:3,clar:8,decaf:false,price:"high"},
+ {id:"kenya_decaf_m",name:"ケニア デカフェ",origin:"ケニア",roast:"ミディアム",fam:["berry","citrus"],body:5,acid:6,aroma:6,sweet:5,bit:4,clar:7,decaf:true,price:"high"}
+];
+const W={flavor:3.851,bitter:1.712,acid:2.479,milk:0.986,brew:1.425,clarity:0.309};
+const FM={floral:["floral","jasmine"],fruity:["berry","citrus","stone","winey","fruity_unusual"],choco:["choco","nutty"],caramel:["caramel","sweet","nutty"],spice:["spice"],earthy:["earthy","smoky"]};
+const BT={dislike_bitter:2,ok_bitter:5,love_bitter:9};
+const AT={no_acid:2,ok_acid:5,love_acid:9};
+function fmatch(fam,sel){
+ if(sel.length===1&&sel[0]==="balanced")return fam.includes("balanced")?0.5:0.2;
+ let h=0;sel.forEach(f=>{const t=FM[f]||[];if(fam.some(x=>t.includes(x)))h++;});return h/sel.length;
+}
+function recommend(ans){
+ const tb=BT[ans.bitter],ta=AT[ans.acid];
+ let pool=CATALOG;
+ if(ans.caffeine==="decaf")pool=pool.filter(b=>b.decaf);else pool=pool.filter(b=>!b.decaf);
+ if(ans.budget&&ans.budget!=="any"){const o={low:0,mid:1,high:2},cap=o[ans.budget];const f=pool.filter(b=>o[b.price]<=cap);if(f.length>=3)pool=f;}
+ return pool.map(b=>{
+  const ff=fmatch(b.fam,ans.flavor);
+  const fb=1-Math.abs(b.bit-tb)/10,fa=1-Math.abs(b.acid-ta)/10;
+  let fm=ans.milk==="milk"||ans.milk==="both"?(b.body/10)*.5+(b.bit/10)*.5:ans.milk==="black"?(b.aroma/10)*.6+(b.clar/10)*.4:.5;
+  let fr=ans.brew==="espresso"?(b.body/10)*.5+(b.bit/10)*.5:ans.brew==="frenchpress"?b.body/10:ans.brew==="drip"?(b.clar/10)*.6+(b.aroma/10)*.4:ans.brew==="coldbrew"?(b.sweet/10)*.5+(1-b.acid/10)*.5:.5;
+  let fc=b.clar/10;if(ans.flavor.length===1&&ans.flavor[0]==="balanced"){const v=Math.abs(b.body-5)+Math.abs(b.acid-5)+Math.abs(b.bit-5);fc=fc*.5+(1-v/30)*.5;}
+  return{bean:b,score:W.flavor*ff+W.bitter*fb+W.acid*fa+W.milk*fm+W.brew*fr+W.clarity*fc};
+ }).sort((a,b)=>b.score-a.score);
+}
+// ===== UI =====
+const A={};const N=8;
+const FLLBL={floral:'フローラル',fruity:'フルーティ',choco:'チョコ・ナッツ',caramel:'キャラメル',spice:'スパイシー',earthy:'アーシー',balanced:'バランス'};
+const BLBL={love_bitter:'苦味好き',ok_bitter:'苦味は許容',dislike_bitter:'苦味が苦手'};
+const ALBL={love_acid:'酸味好き',ok_acid:'酸味は程よく',no_acid:'酸味は控えめ'};
+const PRLBL={low:'〜¥1,500',mid:'¥1,500〜2,500',high:'¥2,500〜',any:'価格より味優先'};
+
+function startQuiz(){
+ document.getElementById('hero').style.display='none';
+ const qs=document.getElementById('quizSection');
+ qs.classList.add('visible');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function initQ(i){
+ const box=document.querySelector('[data-q="'+i+'"]');
+ const os=box.querySelectorAll('.opt');const bt=document.getElementById('b'+i);
+ const mx=box.dataset.multi?parseInt(box.dataset.multi):1;
+ os.forEach(o=>o.addEventListener('click',()=>{
+  if(mx===1){os.forEach(x=>x.classList.remove('sel'));o.classList.add('sel');}
+  else{
+   if(o.dataset.excl){os.forEach(x=>x.classList.remove('sel'));o.classList.add('sel');}
+   else{const ex=box.querySelector('[data-excl]');if(ex)ex.classList.remove('sel');
+    const cur=box.querySelectorAll('.opt.sel:not([data-excl])');
+    if(o.classList.contains('sel'))o.classList.remove('sel');else if(cur.length<mx)o.classList.add('sel');}
+  }
+  bt.disabled=box.querySelectorAll('.opt.sel').length===0;
+ }));
+}
+function grab(i){const s=document.querySelectorAll('[data-q="'+i+'"] .opt.sel');const v=[...s].map(o=>o.dataset.v);A[i]=v.length===1?v[0]:v;}
+function prog(s){
+ const pct=Math.round(s/N*100);
+ document.getElementById('progFill').style.width=pct+'%';
+ document.getElementById('progLabel').textContent='質問 '+Math.min(s,N)+' / '+N;
+ document.getElementById('progPct').textContent=pct+'%';
+}
+function go(i){document.querySelectorAll('.step').forEach(s=>s.classList.remove('on'));document.getElementById(i==='res'?'res':'t'+i).classList.add('on');window.scrollTo({top:document.getElementById('quizSection').offsetTop-20,behavior:'smooth'});}
+function nx(i){grab(i);go(i+1);prog(i+2);}
+function bk(i){go(i-1);prog(i);}
+function restart(){Object.keys(A).forEach(k=>delete A[k]);document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));document.querySelectorAll('[id^=b]').forEach(b=>b.disabled=true);go(0);prog(1);}
+
+function barHtml(label,val){
+ return'<div class="bar-row"><div class="bar-label">'+label+'</div><div class="bar-track"><div class="bar-fill" style="width:'+Math.round(val/10*100)+'%"></div></div></div>';
+}
+
+function fin(){
+ grab(7);
+ const ans={milk:A[0],bitter:A[1],acid:A[2],flavor:Array.isArray(A[3])?A[3]:[A[3]],brew:A[4],timing:A[5],caffeine:A[6],budget:A[7]};
+ const ranked=recommend(ans);
+ const top=ranked[0].bean;
+ const flstr=ans.flavor.map(f=>FLLBL[f]).join('・');
+ const why='<b>'+BLBL[ans.bitter]+'・'+ALBL[ans.acid]+'</b>で、<b>'+flstr+'</b>系の風味をお好みのあなたに、26種の中から最もマッチしたのが<b>'+top.name+'</b>です。';
+ let warn='';
+ if((ans.milk==='milk'||ans.milk==='both')&&top.roast==='ライト')warn='<div class="warn-box">⚠️ ミルクは浅煎りの繊細な香りを覆い隠しがちです。ミルクで飲むなら、第2〜3候補の中深煎り系の方が合うかもしれません。</div>';
+ let cafNote='';
+ if(ans.caffeine==='moderate'&&(ans.timing==='afternoon'))cafNote='午後の摂取は睡眠の質に影響しやすいため、量は控えめにすることをおすすめします。';
+ else if(ans.timing==='relax')cafNote='リラックスタイムには、ゆっくり淹れるフレンチプレスで香りを楽しむのもおすすめです。';
+ else if(ans.timing==='morning')cafNote='朝の一杯なら、前夜に豆を計量しておくと手早く淹れられます。';
+ const alts=ranked.slice(1,4).map((r,i)=>{
+  const pct=Math.round(r.score/ranked[0].score*100);
+  return'<div class="alt-card"><div class="alt-left"><div class="alt-rank">第'+(i+2)+'候補</div><div class="alt-name">'+r.bean.name+'</div><div class="alt-meta">'+r.bean.roast+' ／ '+r.bean.origin+'</div></div><div class="alt-pct">マッチ度<br><b>'+pct+'%</b></div></div>';
+ }).join('');
+ document.getElementById('resultWrap').innerHTML=
+ '<div class="result-hero">'+
+ '<div class="result-tag">あなたへのおすすめ ✦ 第1候補</div>'+
+ '<div class="result-name">'+top.name+'</div>'+
+ '<div class="result-origin">'+top.origin+' ／ '+top.roast+'ロースト</div>'+
+ '<div class="fam-tags">'+top.fam.slice(0,4).map(f=>'<span class="fam-tag">'+f+'</span>').join('')+'</div>'+
+ '</div>'+
+ '<div class="result-body">'+
+ '<div class="rrow"><span class="rl">カフェイン</span><span class="rv">'+(ans.caffeine==='decaf'?'デカフェ豆のみで選定':ans.caffeine==='moderate'?'アラビカ中心・午後は控えめに':'カフェイン制限なし')+'</span></div>'+
+ '<div class="rrow"><span class="rl">予算の目安</span><span class="rv">'+PRLBL[ans.budget]+'</span></div>'+
+ '<div class="profile-section"><div class="profile-title">FLAVOR PROFILE</div>'+
+ barHtml('ボディ',top.body)+barHtml('酸味',top.acid)+barHtml('アロマ',top.aroma)+barHtml('甘さ',top.sweet)+barHtml('クリーンさ',top.clar)+
+ '</div>'+
+ '<div class="why-box">'+why+'</div>'+warn+
+ (cafNote?'<div class="why-box" style="margin-top:10px">'+cafNote+'</div>':'')+
+ '</div>'+
+ '<div class="alts-section"><div class="alts-title">ほかの候補（スコア順）</div>'+alts+'</div>';
+ go('res');prog(8);
+}
+for(let i=0;i<N;i++)initQ(i);prog(1);
+</script>
+</body>
+</html>
