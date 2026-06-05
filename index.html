@@ -9,196 +9,99 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --cream:   #f7f2eb;
-  --cream2:  #ede6d8;
-  --brown1:  #2c1a0e;
-  --brown2:  #5c3520;
-  --brown3:  #8b5e3c;
-  --brown4:  #b8935a;
-  --brown5:  #d4b483;
-  --light:   #faf7f3;
-  --border:  #d6ccc0;
-  --text:    #1e1208;
-  --sub:     #6b5340;
-  --roast-light:    #c8a96e;
-  --roast-ml:       #9b6b3a;
-  --roast-medium:   #6b3e1e;
-  --roast-md:       #3d200e;
-  --roast-dark:     #150804;
-}
+:root{--cream:#f7f2eb;--cream2:#ede6d8;--brown1:#2c1a0e;--brown2:#5c3520;--brown3:#8b5e3c;--brown4:#b8935a;--brown5:#d4b483;--light:#faf7f3;--border:#d6ccc0;--text:#1e1208;--sub:#6b5340;--rakuten:#bf0000}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  background:var(--cream);
-  color:var(--text);
-  font-family:'Noto Serif JP',serif;
-  min-height:100vh;
-}
-
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  text-align:center;padding:60px 24px;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(180,130,70,.18) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(140,90,40,.12) 0%, transparent 60%),
-    var(--cream);
-  position:relative;overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b5e3c' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  pointer-events:none;
-}
-.logo{
-  font-family:'Shippori Mincho',serif;
-  font-size:13px;letter-spacing:.4em;color:var(--brown3);
-  text-transform:uppercase;margin-bottom:32px;
-  opacity:0;animation:fadeUp .8s .1s forwards;
-}
-.hero-title{
-  font-family:'Shippori Mincho',serif;
-  font-size:clamp(36px,7vw,68px);
-  font-weight:600;line-height:1.25;
-  color:var(--brown1);margin-bottom:20px;
-  opacity:0;animation:fadeUp .9s .25s forwards;
-}
+body{background:var(--cream);color:var(--text);font-family:'Noto Serif JP',serif;min-height:100vh}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 24px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(180,130,70,.18) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(140,90,40,.12) 0%,transparent 60%),var(--cream);position:relative;overflow:hidden}
+.logo{font-family:'Shippori Mincho',serif;font-size:13px;letter-spacing:.4em;color:var(--brown3);text-transform:uppercase;margin-bottom:32px;opacity:0;animation:fadeUp .8s .1s forwards}
+.hero-title{font-family:'Shippori Mincho',serif;font-size:clamp(36px,7vw,68px);font-weight:600;line-height:1.25;color:var(--brown1);margin-bottom:20px;opacity:0;animation:fadeUp .9s .25s forwards}
 .hero-title span{color:var(--brown3)}
-.hero-sub{
-  font-size:clamp(14px,2vw,17px);color:var(--sub);
-  line-height:1.8;max-width:480px;margin:0 auto 40px;
-  opacity:0;animation:fadeUp .9s .4s forwards;
-}
-.hero-btn{
-  display:inline-block;padding:16px 44px;
-  background:var(--brown2);color:var(--cream);
-  font-family:'Shippori Mincho',serif;font-size:15px;letter-spacing:.1em;
-  border:none;border-radius:2px;cursor:pointer;
-  transition:background .2s,transform .15s;
-  opacity:0;animation:fadeUp .9s .55s forwards;
-}
+.hero-sub{font-size:clamp(14px,2vw,17px);color:var(--sub);line-height:1.8;max-width:480px;margin:0 auto 40px;opacity:0;animation:fadeUp .9s .4s forwards}
+.hero-btn{display:inline-block;padding:16px 44px;background:var(--brown2);color:var(--cream);font-family:'Shippori Mincho',serif;font-size:15px;letter-spacing:.1em;border:none;border-radius:2px;cursor:pointer;transition:background .2s,transform .15s;opacity:0;animation:fadeUp .9s .55s forwards}
 .hero-btn:hover{background:var(--brown1);transform:translateY(-2px)}
-.hero-note{font-size:12px;color:var(--brown4);margin-top:14px;
-  opacity:0;animation:fadeUp .9s .7s forwards;}
-.scroll-hint{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-  opacity:0;animation:fadeUp .9s 1.2s forwards;
-}
-.scroll-hint span{font-size:11px;letter-spacing:.2em;color:var(--brown4)}
-.scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,var(--brown4),transparent)}
-
+.hero-note{font-size:12px;color:var(--brown4);margin-top:14px;opacity:0;animation:fadeUp .9s .7s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── QUIZ SECTION ── */
-.quiz-section{
-  max-width:680px;margin:0 auto;
-  padding:80px 24px 120px;
-  display:none;
-}
+.quiz-section{max-width:680px;margin:0 auto;padding:80px 24px 120px;display:none}
 .quiz-section.visible{display:block}
-
 .progress-wrap{margin-bottom:2.5rem}
 .progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:8px;letter-spacing:.05em}
 .progress-track{height:2px;background:var(--cream2);border-radius:1px;overflow:hidden}
 .progress-fill{height:100%;background:var(--brown2);border-radius:1px;transition:width .5s ease}
-
 .step{display:none}.step.on{display:block;animation:fadeUp .4s forwards}
 .step-num{font-size:11px;letter-spacing:.3em;color:var(--brown4);margin-bottom:10px}
 .step-q{font-family:'Shippori Mincho',serif;font-size:clamp(18px,3.5vw,24px);font-weight:600;color:var(--brown1);margin-bottom:6px;line-height:1.5}
 .step-sub{font-size:13px;color:var(--sub);margin-bottom:24px;line-height:1.6}
-
 .opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px;margin-bottom:2rem}
-.opt{
-  border:1px solid var(--border);border-radius:4px;
-  padding:14px 14px;background:var(--light);
-  cursor:pointer;text-align:left;
-  transition:border-color .15s,background .15s,transform .1s;
-}
+.opt{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--light);cursor:pointer;text-align:left;transition:border-color .15s,background .15s,transform .1s}
 .opt:hover{border-color:var(--brown3);background:var(--cream2);transform:translateY(-1px)}
 .opt.sel{border-color:var(--brown2);background:var(--cream2);box-shadow:inset 0 0 0 1px var(--brown2)}
 .opt-icon{font-size:20px;margin-bottom:6px}
 .opt-title{font-size:13px;font-weight:600;color:var(--brown1);line-height:1.3}
 .opt-sub{font-size:11px;color:var(--sub);margin-top:3px}
-
 .nav{display:flex;gap:10px;align-items:center}
 .btn{border:1px solid var(--border);border-radius:2px;padding:10px 22px;background:transparent;cursor:pointer;font-size:13px;font-family:'Noto Serif JP',serif;color:var(--sub);transition:background .15s,border-color .15s}
 .btn:hover{background:var(--cream2);border-color:var(--brown3)}
 .btn-p{background:var(--brown2);color:var(--cream);border-color:var(--brown2)}
 .btn-p:hover{background:var(--brown1)}
 .btn:disabled{opacity:.3;cursor:not-allowed}
-
-/* ── RESULT ── */
-.result-wrap{animation:fadeUp .5s forwards}
-.result-hero{
-  background:linear-gradient(135deg,var(--brown1) 0%,var(--brown2) 100%);
-  border-radius:6px;padding:32px;margin-bottom:20px;color:var(--cream);
-}
+.result-hero{background:linear-gradient(135deg,var(--brown1) 0%,var(--brown2) 100%);border-radius:6px;padding:32px;margin-bottom:20px;color:var(--cream)}
 .result-tag{font-size:11px;letter-spacing:.3em;color:var(--brown5);margin-bottom:10px}
 .result-name{font-family:'Shippori Mincho',serif;font-size:clamp(18px,4vw,26px);font-weight:600;margin-bottom:6px;line-height:1.4}
 .result-origin{font-size:13px;color:var(--brown5);margin-bottom:16px}
 .fam-tags{display:flex;flex-wrap:wrap;gap:6px}
 .fam-tag{font-size:11px;padding:4px 12px;border-radius:999px;border:1px solid rgba(212,180,131,.4);color:var(--brown5)}
-
 .result-body{background:var(--light);border:1px solid var(--border);border-radius:6px;padding:24px;margin-bottom:16px}
 .rrow{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--cream2);font-size:13px}
 .rrow:last-child{border:none}
 .rl{color:var(--sub)}.rv{font-weight:600;color:var(--brown1);text-align:right;max-width:65%}
-
 .profile-section{margin-top:18px}
 .profile-title{font-size:11px;letter-spacing:.15em;color:var(--sub);margin-bottom:12px}
 .bar-row{margin-bottom:9px}
 .bar-label{font-size:12px;color:var(--sub);margin-bottom:3px}
 .bar-track{height:4px;background:var(--cream2);border-radius:2px;overflow:hidden}
 .bar-fill{height:100%;background:var(--brown3);border-radius:2px;transition:width .8s ease}
-
 .why-box{background:var(--cream2);border-radius:4px;padding:14px 16px;margin-top:16px;font-size:13px;line-height:1.7;color:var(--sub)}
 .warn-box{background:#fff8e8;border:1px solid #e8d08a;border-radius:4px;padding:12px 14px;margin-top:10px;font-size:12px;line-height:1.6;color:#7a5f10}
-
+/* 購入ボタン */
+.buy-section{margin-top:20px;padding:16px;background:var(--cream2);border-radius:6px}
+.buy-title{font-size:11px;letter-spacing:.2em;color:var(--sub);margin-bottom:10px}
+.buy-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px 20px;background:var(--rakuten);color:#fff;border:none;border-radius:4px;cursor:pointer;font-family:'Noto Serif JP',serif;font-size:14px;font-weight:600;letter-spacing:.05em;text-decoration:none;transition:opacity .2s}
+.buy-btn:hover{opacity:.85}
+.buy-btn-logo{font-size:11px;opacity:.85;font-weight:400}
+.buy-shop{font-size:11px;color:var(--sub);margin-top:6px;text-align:center}
+/* 他の候補 */
 .alts-section{margin-top:8px}
 .alts-title{font-size:11px;letter-spacing:.2em;color:var(--sub);margin-bottom:10px}
 .alt-card{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid var(--border);border-radius:4px;margin-bottom:8px;background:var(--light)}
-.alt-left .alt-rank{font-size:10px;color:var(--brown4);letter-spacing:.15em;margin-bottom:3px}
-.alt-left .alt-name{font-size:13px;font-weight:600;color:var(--brown1)}
-.alt-left .alt-meta{font-size:11px;color:var(--sub);margin-top:2px}
-.alt-pct{font-size:12px;color:var(--sub);text-align:right}
-
-.action-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.alt-rank{font-size:10px;color:var(--brown4);letter-spacing:.15em;margin-bottom:3px}
+.alt-name{font-size:13px;font-weight:600;color:var(--brown1)}
+.alt-meta{font-size:11px;color:var(--sub);margin-top:2px}
+.alt-pct{font-size:12px;color:var(--sub);text-align:right;white-space:nowrap;padding-left:10px}
 .restart-btn{margin-top:16px;font-size:12px;color:var(--brown4);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:'Noto Serif JP',serif}
-
-/* ── FOOTER ── */
 footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);border-top:1px solid var(--cream2);background:var(--cream)}
-
-/* ── UTIL ── */
-@media(max-width:480px){.opts{grid-template-columns:1fr 1fr}.hero-title{font-size:32px}}
+.affiliate-note{font-size:11px;color:var(--brown4);margin-top:6px}
+@media(max-width:480px){.opts{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <section class="hero" id="hero">
   <p class="logo">Minna no Coffee</p>
   <h1 class="hero-title">あなただけの<br><span>一杯</span>を、見つけよう。</h1>
   <p class="hero-sub">8つの質問に答えるだけで、26種のコーヒー豆の中から<br>あなたの好みにぴったりの一杯を診断します。</p>
   <button class="hero-btn" onclick="startQuiz()">診断をはじめる</button>
   <p class="hero-note">所要時間 約1分 ／ 無料</p>
-  <div class="scroll-hint"><span>SCROLL</span><div class="scroll-line"></div></div>
 </section>
 
-<!-- QUIZ -->
 <section class="quiz-section" id="quizSection">
   <div class="progress-wrap">
     <div class="progress-label"><span id="progLabel">質問 1 / 8</span><span id="progPct">12%</span></div>
     <div class="progress-track"><div class="progress-fill" id="progFill" style="width:12%"></div></div>
   </div>
 
-  <!-- Q0 -->
   <div class="step on" id="t0">
-    <p class="step-num">QUESTION 01</p>
-    <p class="step-q">普段、コーヒーに何かを加えますか？</p>
-    <p class="step-sub">飲み方の基本スタイルを教えてください</p>
+    <p class="step-num">QUESTION 01</p><p class="step-q">普段、コーヒーに何かを加えますか？</p><p class="step-sub">飲み方の基本スタイルを教えてください</p>
     <div class="opts" data-q="0">
       <button class="opt" data-v="black"><div class="opt-icon">☕</div><div class="opt-title">ブラック</div><div class="opt-sub">何も加えない</div></button>
       <button class="opt" data-v="milk"><div class="opt-icon">🥛</div><div class="opt-title">ミルク系</div><div class="opt-sub">ラテ・カプチーノ</div></button>
@@ -208,11 +111,8 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
     <div class="nav"><button class="btn btn-p" id="b0" disabled onclick="nx(0)">次へ →</button></div>
   </div>
 
-  <!-- Q1 -->
   <div class="step" id="t1">
-    <p class="step-num">QUESTION 02</p>
-    <p class="step-q">苦味に対してどう感じますか？</p>
-    <p class="step-sub">率直に教えてください</p>
+    <p class="step-num">QUESTION 02</p><p class="step-q">苦味に対してどう感じますか？</p><p class="step-sub">率直に教えてください</p>
     <div class="opts" data-q="1">
       <button class="opt" data-v="love_bitter"><div class="opt-icon">🔥</div><div class="opt-title">大好き</div><div class="opt-sub">深いコクが好み</div></button>
       <button class="opt" data-v="ok_bitter"><div class="opt-icon">😊</div><div class="opt-title">許容範囲</div><div class="opt-sub">苦すぎなければOK</div></button>
@@ -221,11 +121,8 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
     <div class="nav"><button class="btn" onclick="bk(1)">← 戻る</button><button class="btn btn-p" id="b1" disabled onclick="nx(1)">次へ →</button></div>
   </div>
 
-  <!-- Q2 -->
   <div class="step" id="t2">
-    <p class="step-num">QUESTION 03</p>
-    <p class="step-q">酸味はどのくらい好きですか？</p>
-    <p class="step-sub">フルーツのような明るい酸味のこと</p>
+    <p class="step-num">QUESTION 03</p><p class="step-q">酸味はどのくらい好きですか？</p><p class="step-sub">フルーツのような明るい酸味のこと</p>
     <div class="opts" data-q="2">
       <button class="opt" data-v="love_acid"><div class="opt-icon">🍋</div><div class="opt-title">大好き</div><div class="opt-sub">爽やかな酸が好き</div></button>
       <button class="opt" data-v="ok_acid"><div class="opt-icon">⚖️</div><div class="opt-title">程よく</div><div class="opt-sub">少しあるくらい</div></button>
@@ -234,11 +131,8 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
     <div class="nav"><button class="btn" onclick="bk(2)">← 戻る</button><button class="btn btn-p" id="b2" disabled onclick="nx(2)">次へ →</button></div>
   </div>
 
-  <!-- Q3 -->
   <div class="step" id="t3">
-    <p class="step-num">QUESTION 04</p>
-    <p class="step-q">感じたい香り・味のイメージは？</p>
-    <p class="step-sub">最大2つまで選択 ／ こだわらない場合は「おまかせ」</p>
+    <p class="step-num">QUESTION 04</p><p class="step-q">感じたい香り・味のイメージは？</p><p class="step-sub">最大2つまで ／ こだわらない場合は「おまかせ」</p>
     <div class="opts" data-q="3" data-multi="2">
       <button class="opt" data-v="floral"><div class="opt-icon">🌸</div><div class="opt-title">フローラル</div><div class="opt-sub">華やか・ジャスミン</div></button>
       <button class="opt" data-v="fruity"><div class="opt-icon">🍓</div><div class="opt-title">フルーティ</div><div class="opt-sub">ベリー・柑橘</div></button>
@@ -251,11 +145,8 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
     <div class="nav"><button class="btn" onclick="bk(3)">← 戻る</button><button class="btn btn-p" id="b3" disabled onclick="nx(3)">次へ →</button></div>
   </div>
 
-  <!-- Q4 -->
   <div class="step" id="t4">
-    <p class="step-num">QUESTION 05</p>
-    <p class="step-q">自宅でどう淹れていますか？</p>
-    <p class="step-sub">これから試したい方法でも構いません</p>
+    <p class="step-num">QUESTION 05</p><p class="step-q">自宅でどう淹れていますか？</p><p class="step-sub">これから試したい方法でも構いません</p>
     <div class="opts" data-q="4">
       <button class="opt" data-v="drip"><div class="opt-icon">☕</div><div class="opt-title">ペーパードリップ</div><div class="opt-sub">すっきりクリーン</div></button>
       <button class="opt" data-v="frenchpress"><div class="opt-icon">🫖</div><div class="opt-title">フレンチプレス</div><div class="opt-sub">コク深め</div></button>
@@ -266,11 +157,8 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
     <div class="nav"><button class="btn" onclick="bk(4)">← 戻る</button><button class="btn btn-p" id="b4" disabled onclick="nx(4)">次へ →</button></div>
   </div>
 
-  <!-- Q5 -->
   <div class="step" id="t5">
-    <p class="step-num">QUESTION 06</p>
-    <p class="step-q">いつ飲むことが多いですか？</p>
-    <p class="step-sub">主なシーンを教えてください</p>
+    <p class="step-num">QUESTION 06</p><p class="step-q">いつ飲むことが多いですか？</p><p class="step-sub">主なシーンを教えてください</p>
     <div class="opts" data-q="5">
       <button class="opt" data-v="morning"><div class="opt-icon">🌅</div><div class="opt-title">朝一番</div><div class="opt-sub">目覚めのルーティン</div></button>
       <button class="opt" data-v="work"><div class="opt-icon">💼</div><div class="opt-title">仕事・集中時</div><div class="opt-sub">デスクで</div></button>
@@ -280,11 +168,8 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
     <div class="nav"><button class="btn" onclick="bk(5)">← 戻る</button><button class="btn btn-p" id="b5" disabled onclick="nx(5)">次へ →</button></div>
   </div>
 
-  <!-- Q6 -->
   <div class="step" id="t6">
-    <p class="step-num">QUESTION 07</p>
-    <p class="step-q">カフェインについて</p>
-    <p class="step-sub">体や生活リズムへの影響はありますか？</p>
+    <p class="step-num">QUESTION 07</p><p class="step-q">カフェインについて</p><p class="step-sub">体や生活リズムへの影響はありますか？</p>
     <div class="opts" data-q="6">
       <button class="opt" data-v="full"><div class="opt-icon">⚡</div><div class="opt-title">問題なし</div><div class="opt-sub">気にしない</div></button>
       <button class="opt" data-v="moderate"><div class="opt-icon">🌙</div><div class="opt-title">少なめがいい</div><div class="opt-sub">夕方以降は控える</div></button>
@@ -293,11 +178,8 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
     <div class="nav"><button class="btn" onclick="bk(6)">← 戻る</button><button class="btn btn-p" id="b6" disabled onclick="nx(6)">次へ →</button></div>
   </div>
 
-  <!-- Q7 -->
   <div class="step" id="t7">
-    <p class="step-num">QUESTION 08</p>
-    <p class="step-q">1袋あたりの予算は？</p>
-    <p class="step-sub">200g前後の豆を基準にした目安</p>
+    <p class="step-num">QUESTION 08</p><p class="step-q">1袋あたりの予算は？</p><p class="step-sub">200g前後の豆を基準にした目安</p>
     <div class="opts" data-q="7">
       <button class="opt" data-v="low"><div class="opt-icon">🪙</div><div class="opt-title">〜¥1,500</div><div class="opt-sub">デイリー向け</div></button>
       <button class="opt" data-v="mid"><div class="opt-icon">💰</div><div class="opt-title">¥1,500〜2,500</div><div class="opt-sub">スペシャルティ</div></button>
@@ -307,20 +189,49 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
     <div class="nav"><button class="btn" onclick="bk(7)">← 戻る</button><button class="btn btn-p" id="b7" disabled onclick="fin()">結果を見る ✦</button></div>
   </div>
 
-  <!-- RESULT -->
   <div class="step" id="res">
-    <div class="result-wrap" id="resultWrap"></div>
+    <div id="resultWrap"></div>
     <button class="restart-btn" onclick="restart()">もう一度診断する</button>
   </div>
 </section>
 
 <footer>
   <p>© 2026 みんなの珈琲 — あなたに合うコーヒー豆を見つける診断サイト</p>
-  <p style="margin-top:6px;font-size:11px">本サイトはAmazonアソシエイト・楽天アフィリエイトに参加予定です</p>
+  <p class="affiliate-note">本サイトはAmazonアソシエイト・楽天アフィリエイトに参加しています</p>
 </footer>
 
 <script>
-// ===== COFFEE ENGINE (最適化済み 26豆) =====
+// ===== RAKUTEN AFFILIATE LINKS =====
+const RAKUTEN={
+  eth_yir_w_l:  {url:'https://hb.afl.rakuten.co.jp/ichiba/54929363.c4f99d02.54929364.941574d0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcoffee-takamura%2Fethiopia_g1_500%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'タカムラ コーヒーロースターズ'},
+  eth_yir_n_ml: {url:'https://hb.afl.rakuten.co.jp/ichiba/54929363.c4f99d02.54929364.941574d0/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fcoffee-takamura%2Fethiopia_g1_500%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'タカムラ コーヒーロースターズ'},
+  eth_guji_n_m: {url:'https://hb.afl.rakuten.co.jp/ichiba/549350f1.8aa8bec3.549350f2.ea1dbedc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyorozuya462%2Fcompass1643960327s%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'あたごコーヒー'},
+  eth_anaerobic_ml:{url:'https://hb.afl.rakuten.co.jp/ichiba/54931b7d.f1523afa.54931b7e.3efd1d9c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdaisen-coffee%2Fcoffee-144-r400g%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'DRIP TRIP'},
+  kenya_aa_w_m: {url:'https://hb.afl.rakuten.co.jp/ichiba/5492acc4.dc46dd8d.5492acc5.fff5803f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbaisen-coffee%2Fst-42-3%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'ばいせん工房珈琲倶楽部'},
+  kenya_aa_w_md:{url:'https://hb.afl.rakuten.co.jp/ichiba/5492acc4.dc46dd8d.5492acc5.fff5803f/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbaisen-coffee%2Fst-42-3%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'ばいせん工房珈琲倶楽部'},
+  col_huila_w_m:{url:'https://hb.afl.rakuten.co.jp/ichiba/5492f4ec.cd0001c5.5492f4ed.a4649df6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbabaspremiumcoffeeclub%2Fr-wc-540%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'プレミアムコーヒークラブ'},
+  col_huila_w_md:{url:'https://hb.afl.rakuten.co.jp/ichiba/5492f4ec.cd0001c5.5492f4ed.a4649df6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbabaspremiumcoffeeclub%2Fr-wc-540%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'プレミアムコーヒークラブ'},
+  col_decaf_m:  {url:'https://hb.afl.rakuten.co.jp/ichiba/5492c03c.fc134d16.5492c03d.9ecd5efc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fthebeans%2Fdecaf-indonesia-300%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'THE BEANS（デカフェ）'},
+  bra_cer_n_m:  {url:'https://hb.afl.rakuten.co.jp/ichiba/5492d521.5881ed56.5492d522.9a35f28c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fshigecafe%2F554528%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'しげとしコーヒー'},
+  bra_cer_n_md: {url:'https://hb.afl.rakuten.co.jp/ichiba/5492d521.5881ed56.5492d522.9a35f28c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fshigecafe%2F554528%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'しげとしコーヒー'},
+  bra_dark:     {url:'https://hb.afl.rakuten.co.jp/ichiba/5492d521.5881ed56.5492d522.9a35f28c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fshigecafe%2F554528%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'しげとしコーヒー'},
+  bra_decaf_md: {url:'https://hb.afl.rakuten.co.jp/ichiba/5492c03c.fc134d16.5492c03d.9ecd5efc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fthebeans%2Fdecaf-indonesia-300%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'THE BEANS（デカフェ）'},
+  gua_ant_w_m:  {url:'https://hb.afl.rakuten.co.jp/ichiba/5492d521.5881ed56.5492d522.9a35f28c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fshigecafe%2F559245%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'しげとしコーヒー'},
+  gua_ant_w_md: {url:'https://hb.afl.rakuten.co.jp/ichiba/5492d521.5881ed56.5492d522.9a35f28c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fshigecafe%2F559245%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'しげとしコーヒー'},
+  cos_tar_w_m:  {url:'https://hb.afl.rakuten.co.jp/ichiba/549309d9.dd4519a0.549309da.4b1bc9af/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftobidasu-baisenjo%2Ftbb-costaricahoney-200%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'とびだす焙煎所'},
+  cos_honey_m:  {url:'https://hb.afl.rakuten.co.jp/ichiba/549309d9.dd4519a0.549309da.4b1bc9af/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftobidasu-baisenjo%2Ftbb-costaricahoney-200%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'とびだす焙煎所'},
+  sum_man_m:    {url:'https://hb.afl.rakuten.co.jp/ichiba/5492c03c.fc134d16.5492c03d.9ecd5efc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fthebeans%2Find-300%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'THE BEANS'},
+  sum_man_md:   {url:'https://hb.afl.rakuten.co.jp/ichiba/5492c03c.fc134d16.5492c03d.9ecd5efc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fthebeans%2Find-300%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'THE BEANS'},
+  sum_man_dk:   {url:'https://hb.afl.rakuten.co.jp/ichiba/5492c03c.fc134d16.5492c03d.9ecd5efc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fthebeans%2Find-300%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'THE BEANS'},
+  sum_man_l:    {url:'https://hb.afl.rakuten.co.jp/ichiba/54939445.15feb308.54939447.19d269ec/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhiroshimacoffee%2F792392%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'広島珈琲'},
+  pan_geisha_l: {url:'https://hb.afl.rakuten.co.jp/ichiba/5492f4ec.cd0001c5.5492f4ed.a4649df6/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbabaspremiumcoffeeclub%2Fr-pg%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'プレミアムコーヒークラブ'},
+  yemen_mocha_n:{url:'https://hb.afl.rakuten.co.jp/ichiba/54931b7d.f1523afa.54931b7e.3efd1d9c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdaisen-coffee%2Fcoffee-006-r400g%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'DRIP TRIP'},
+  guatemala_honey_m:{url:'https://hb.afl.rakuten.co.jp/ichiba/549309d9.dd4519a0.549309da.4b1bc9af/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftobidasu-baisenjo%2Ftbb-guatemala-200%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'とびだす焙煎所'},
+  colombia_geisha_l:{url:'https://hb.afl.rakuten.co.jp/ichiba/54931b7d.f1523afa.54931b7e.3efd1d9c/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdaisen-coffee%2Fcoffee-446-r400g%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'DRIP TRIP'},
+  kenya_decaf_m:{url:'https://hb.afl.rakuten.co.jp/ichiba/5492c03c.fc134d16.5492c03d.9ecd5efc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fthebeans%2Fdecaf-indonesia-300%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9',shop:'THE BEANS（デカフェ）'}
+};
+
+// ===== COFFEE ENGINE =====
 const CATALOG=[
  {id:"eth_yir_w_l",name:"エチオピア イルガチェフェ ウォッシュド（浅煎り）",origin:"エチオピア",roast:"ライト",fam:["floral","citrus"],body:2,acid:9,aroma:10,sweet:4,bit:1,clar:9,decaf:false,price:"low"},
  {id:"eth_yir_n_ml",name:"エチオピア イルガチェフェ ナチュラル",origin:"エチオピア",roast:"ミディアムライト",fam:["floral","berry"],body:4,acid:8,aroma:9,sweet:6,bit:2,clar:6,decaf:false,price:"low"},
@@ -371,6 +282,7 @@ function recommend(ans){
   return{bean:b,score:W.flavor*ff+W.bitter*fb+W.acid*fa+W.milk*fm+W.brew*fr+W.clarity*fc};
  }).sort((a,b)=>b.score-a.score);
 }
+
 // ===== UI =====
 const A={};const N=8;
 const FLLBL={floral:'フローラル',fruity:'フルーティ',choco:'チョコ・ナッツ',caramel:'キャラメル',spice:'スパイシー',earthy:'アーシー',balanced:'バランス'};
@@ -380,8 +292,7 @@ const PRLBL={low:'〜¥1,500',mid:'¥1,500〜2,500',high:'¥2,500〜',any:'価�
 
 function startQuiz(){
  document.getElementById('hero').style.display='none';
- const qs=document.getElementById('quizSection');
- qs.classList.add('visible');
+ document.getElementById('quizSection').classList.add('visible');
  window.scrollTo({top:0,behavior:'smooth'});
 }
 function initQ(i){
@@ -425,13 +336,20 @@ function fin(){
  let warn='';
  if((ans.milk==='milk'||ans.milk==='both')&&top.roast==='ライト')warn='<div class="warn-box">⚠️ ミルクは浅煎りの繊細な香りを覆い隠しがちです。ミルクで飲むなら、第2〜3候補の中深煎り系の方が合うかもしれません。</div>';
  let cafNote='';
- if(ans.caffeine==='moderate'&&(ans.timing==='afternoon'))cafNote='午後の摂取は睡眠の質に影響しやすいため、量は控えめにすることをおすすめします。';
+ if(ans.caffeine==='moderate'&&ans.timing==='afternoon')cafNote='午後の摂取は睡眠の質に影響しやすいため、量は控えめにすることをおすすめします。';
  else if(ans.timing==='relax')cafNote='リラックスタイムには、ゆっくり淹れるフレンチプレスで香りを楽しむのもおすすめです。';
  else if(ans.timing==='morning')cafNote='朝の一杯なら、前夜に豆を計量しておくと手早く淹れられます。';
+
+ // 楽天リンク
+ const rl=RAKUTEN[top.id];
+ const buyHtml=rl?'<div class="buy-section"><div class="buy-title">この豆を購入する</div><a class="buy-btn" href="'+rl.url+'" target="_blank" rel="noopener"><span>Rakuten</span><span>楽天市場で見る</span></a><p class="buy-shop">取扱店舗：'+rl.shop+'</p></div>':'';
+
+ // 他の候補（リンクなし・対比効果）
  const alts=ranked.slice(1,4).map((r,i)=>{
   const pct=Math.round(r.score/ranked[0].score*100);
-  return'<div class="alt-card"><div class="alt-left"><div class="alt-rank">第'+(i+2)+'候補</div><div class="alt-name">'+r.bean.name+'</div><div class="alt-meta">'+r.bean.roast+' ／ '+r.bean.origin+'</div></div><div class="alt-pct">マッチ度<br><b>'+pct+'%</b></div></div>';
+  return'<div class="alt-card"><div><div class="alt-rank">第'+(i+2)+'候補</div><div class="alt-name">'+r.bean.name+'</div><div class="alt-meta">'+r.bean.roast+' ／ '+r.bean.origin+'</div></div><div class="alt-pct">マッチ度<br><b>'+pct+'%</b></div></div>';
  }).join('');
+
  document.getElementById('resultWrap').innerHTML=
  '<div class="result-hero">'+
  '<div class="result-tag">あなたへのおすすめ ✦ 第1候補</div>'+
@@ -448,7 +366,8 @@ function fin(){
  '<div class="why-box">'+why+'</div>'+warn+
  (cafNote?'<div class="why-box" style="margin-top:10px">'+cafNote+'</div>':'')+
  '</div>'+
- '<div class="alts-section"><div class="alts-title">ほかの候補（スコア順）</div>'+alts+'</div>';
+ buyHtml+
+ '<div class="alts-section"><div class="alts-title">ほかの候補（参考）</div>'+alts+'</div>';
  go('res');prog(8);
 }
 for(let i=0;i<N;i++)initQ(i);prog(1);
