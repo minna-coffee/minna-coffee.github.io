@@ -585,6 +585,8 @@ barHtml('ボディ',top.body)+barHtml('酸味',top.acid)+barHtml('アロマ',top
 '</div>'+
 buyHtml+
 '<div class="alts-section"><div class="alts-title">ほかの候補（参考）</div>'+alts+'</div>';
+const toolsHtml = buildToolsSection(ans.brew);
+document.getElementById('resultWrap').querySelector('.alts-section')?.insertAdjacentHTML('afterend', toolsHtml);
 go('res');prog(8);
 }
 for(let i=0;i<N;i++)initQ(i);prog(1);
