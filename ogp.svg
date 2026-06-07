@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f2eb"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#bg)"/>
+  <defs>
+    <radialGradient id="bg" cx="30%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="#e8d8b8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#f7f2eb" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="600" cy="180" r="280" fill="#d4b483" fill-opacity="0.08"/>
+  <text x="600" y="180" font-family="serif" font-size="18" fill="#8b5e3c" letter-spacing="6" text-anchor="middle">Minna no Coffee</text>
+  <text x="600" y="300" font-family="serif" font-size="80" font-weight="600" fill="#2c1a0e" text-anchor="middle">みんなの珈琲</text>
+  <text x="600" y="370" font-family="serif" font-size="26" fill="#5c3520" text-anchor="middle">あなただけの一杯を、見つけよう。</text>
+  <text x="600" y="430" font-family="serif" font-size="20" fill="#8b5e3c" text-anchor="middle">8つの質問 × 26種のコーヒー豆</text>
+  <rect x="490" y="460" width="220" height="52" rx="26" fill="#2c1a0e"/>
+  <text x="600" y="492" font-family="serif" font-size="18" fill="#f7f2eb" text-anchor="middle">診断をはじめる</text>
+  <text x="600" y="590" font-family="serif" font-size="15" fill="#b8935a" text-anchor="middle">minna-coffee.github.io</text>
+</svg>
