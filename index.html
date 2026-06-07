@@ -599,7 +599,6 @@ barHtml('ボディ',top.body)+barHtml('酸味',top.acid)+barHtml('アロマ',top
 '</div>'+
 buyHtml+
 '<div class="alts-section"><div class="alts-title">ほかの候補（参考）</div>'+alts+'</div>';
-const toolsHtml = buildToolsSection(ans.brew);
 document.getElementById('resultWrap').querySelector('.alts-section')?.insertAdjacentHTML('afterend', toolsHtml);
 const _th=buildToolsSection(ans.brew);if(_th){const _rw=document.getElementById('resultWrap');if(_rw){const _as=_rw.querySelector('.alts-section');if(_as)_as.insertAdjacentHTML('afterend',_th);else _rw.insertAdjacentHTML('beforeend',_th);}}
 go('res');prog(8);
