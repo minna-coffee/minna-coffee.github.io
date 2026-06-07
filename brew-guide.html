@@ -19,14 +19,24 @@ body{background:var(--cream);color:var(--text);font-family:'Noto Serif JP',serif
 .page-subtitle{font-size:13px;color:var(--sub);line-height:1.6}
 .back-link{display:inline-block;margin-top:16px;font-size:12px;color:var(--brown4);text-decoration:none;letter-spacing:.05em}
 .back-link:hover{color:var(--brown2)}
-.toc{max-width:600px;margin:32px auto 0;padding:0 24px}
-.toc-inner{background:var(--light);border:1px solid var(--border);border-radius:4px;padding:20px 24px}
-.toc-title{font-size:11px;letter-spacing:.3em;color:var(--brown4);margin-bottom:12px}
-.toc-list{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
-.toc-list a{font-size:13px;color:var(--brown2);text-decoration:none;padding:6px 14px;border:1px solid var(--cream2);border-radius:2px;background:var(--cream);transition:background .15s,border-color .15s}
-.toc-list a:hover{background:var(--cream2);border-color:var(--brown3)}
-.main{max-width:600px;margin:0 auto;padding:40px 24px 80px}
-.brew-section{margin-bottom:56px}
+/* TOCページ */
+.toc-page{max-width:600px;margin:40px auto 80px;padding:0 24px}
+.toc-heading{font-size:11px;letter-spacing:.3em;color:var(--brown4);margin-bottom:24px}
+.toc-cards{display:flex;flex-direction:column;gap:12px}
+.toc-card{display:flex;align-items:center;gap:16px;padding:20px;background:var(--light);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);transition:background .15s,border-color .15s,transform .1s}
+.toc-card:hover{background:var(--cream2);border-color:var(--brown3);transform:translateY(-1px)}
+.toc-card-icon{font-size:28px;min-width:40px;text-align:center}
+.toc-card-body{flex:1}
+.toc-card-label{font-size:10px;letter-spacing:.3em;color:var(--brown4);margin-bottom:4px}
+.toc-card-title{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:600;color:var(--brown1);margin-bottom:4px}
+.toc-card-desc{font-size:12px;color:var(--sub);line-height:1.5}
+.toc-card-arrow{font-size:16px;color:var(--brown5)}
+/* 詳細ページ */
+.detail-page{max-width:600px;margin:0 auto;padding:32px 24px 80px;display:none}
+.brew-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.brew-nav-back{font-size:12px;color:var(--brown4);text-decoration:none;letter-spacing:.05em}
+.brew-nav-back:hover{color:var(--brown2)}
+.brew-nav-other{font-size:11px;color:var(--brown5);letter-spacing:.05em}
 .brew-header{margin-bottom:20px}
 .brew-label{font-size:11px;letter-spacing:.3em;color:var(--brown4);margin-bottom:6px}
 .brew-title{font-family:'Shippori Mincho',serif;font-size:clamp(20px,4vw,26px);font-weight:600;color:var(--brown1);margin-bottom:6px}
@@ -38,13 +48,12 @@ body{background:var(--cream);color:var(--text);font-family:'Noto Serif JP',serif
 .step{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--cream2)}
 .step:last-child{border:none;padding-bottom:0}
 .step-num{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:600;color:var(--brown5);min-width:24px;line-height:1.3}
-.step-content{}
 .step-title{font-size:13px;font-weight:600;color:var(--brown1);margin-bottom:3px}
 .step-desc{font-size:12px;color:var(--sub);line-height:1.7}
 .tip-box{background:var(--cream2);border-left:3px solid var(--brown4);padding:12px 16px;margin-top:16px;border-radius:0 3px 3px 0}
 .tip-label{font-size:10px;letter-spacing:.2em;color:var(--brown3);margin-bottom:4px}
 .tip-text{font-size:12px;color:var(--brown1);line-height:1.7}
-.tools-section{border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.tools-section{border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:32px}
 .tools-header{background:var(--cream2);padding:12px 16px;font-size:11px;letter-spacing:.3em;color:var(--brown4)}
 .tool-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--cream2);background:var(--light)}
 .tool-item:last-child{border:none}
@@ -54,373 +63,279 @@ body{background:var(--cream);color:var(--text);font-family:'Noto Serif JP',serif
 .tool-price{font-size:11px;color:var(--sub)}
 .tool-link{display:inline-block;font-size:11px;padding:6px 14px;background:var(--brown2);color:var(--cream);text-decoration:none;border-radius:2px;white-space:nowrap;flex-shrink:0;transition:background .15s}
 .tool-link:hover{background:var(--brown1)}
-.divider{border:none;border-top:1px solid var(--cream2);margin:0}
+.other-brews{border-top:1px solid var(--cream2);padding-top:24px}
+.other-brews-title{font-size:11px;letter-spacing:.3em;color:var(--brown4);margin-bottom:12px}
+.other-brews-list{display:flex;flex-wrap:wrap;gap:8px}
+.other-brew-btn{font-size:12px;padding:8px 16px;border:1px solid var(--border);border-radius:2px;background:var(--cream);color:var(--sub);text-decoration:none;transition:background .15s,border-color .15s}
+.other-brew-btn:hover{background:var(--cream2);border-color:var(--brown3)}
 footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);border-top:1px solid var(--cream2);background:var(--cream)}
 .affiliate-note{font-size:11px;color:var(--brown4);margin-top:6px}
-@media(max-width:480px){.tool-item{flex-wrap:wrap}.tool-link{margin-top:8px}}
+@media(max-width:480px){.tool-item{flex-wrap:wrap}.tool-link{margin-top:8px}.toc-card{flex-wrap:wrap}}
 </style>
 </head>
 <body>
 <header class="site-header">
   <p class="site-logo">Minna no Kohii</p>
-  <h1 class="page-title">コーヒーの淹れ方ガイド</h1>
-  <p class="page-subtitle">抽出方法ごとの手順と、必要な器具をまとめました。</p>
+  <h1 class="page-title" id="page-title">コーヒーの淹れ方ガイド</h1>
+  <p class="page-subtitle" id="page-subtitle">淹れ方を選んで、手順と必要な器具を確認しましょう。</p>
   <a href="./index.html" class="back-link">← 診断ページに戻る</a>
 </header>
 
-<div class="toc">
-  <div class="toc-inner">
-    <p class="toc-title">CONTENTS</p>
-    <ul class="toc-list">
-      <li><a href="#drip">ペーパードリップ</a></li>
-      <li><a href="#frenchpress">フレンチプレス</a></li>
-      <li><a href="#espresso">エスプレッソ</a></li>
-      <li><a href="#coldbrew">水出し</a></li>
-    </ul>
+<!-- TOCページ -->
+<div class="toc-page" id="toc-page">
+  <p class="toc-heading">BREW METHOD</p>
+  <div class="toc-cards">
+    <a class="toc-card" href="#drip">
+      <span class="toc-card-icon">☕</span>
+      <div class="toc-card-body">
+        <p class="toc-card-label">PAPER DRIP</p>
+        <p class="toc-card-title">ペーパードリップ</p>
+        <p class="toc-card-desc">クリアで雑味のない定番の淹れ方。初心者にも最適。</p>
+      </div>
+      <span class="toc-card-arrow">›</span>
+    </a>
+    <a class="toc-card" href="#frenchpress">
+      <span class="toc-card-icon">🫖</span>
+      <div class="toc-card-body">
+        <p class="toc-card-label">FRENCH PRESS</p>
+        <p class="toc-card-title">フレンチプレス</p>
+        <p class="toc-card-desc">豆本来のコクとオイルをダイレクトに楽しむ浸漬式。</p>
+      </div>
+      <span class="toc-card-arrow">›</span>
+    </a>
+    <a class="toc-card" href="#espresso">
+      <span class="toc-card-icon">⚡</span>
+      <div class="toc-card-body">
+        <p class="toc-card-label">ESPRESSO</p>
+        <p class="toc-card-title">エスプレッソ</p>
+        <p class="toc-card-desc">濃厚でクレマのある一杯。ラテやカプチーノのベースに。</p>
+      </div>
+      <span class="toc-card-arrow">›</span>
+    </a>
+    <a class="toc-card" href="#coldbrew">
+      <span class="toc-card-icon">🧊</span>
+      <div class="toc-card-body">
+        <p class="toc-card-label">COLD BREW</p>
+        <p class="toc-card-title">水出し（コールドブリュー）</p>
+        <p class="toc-card-desc">水でじっくり8〜12時間。まろやかで甘みのある仕上がり。</p>
+      </div>
+      <span class="toc-card-arrow">›</span>
+    </a>
   </div>
 </div>
 
-<main class="main">
-
-  <!-- ペーパードリップ -->
-  <section class="brew-section" id="drip">
-    <div class="brew-header">
-      <p class="brew-label">PAPER DRIP</p>
-      <h2 class="brew-title">ペーパードリップ</h2>
-      <p class="brew-tagline">クリアで雑味のない、すっきりとした味わい。もっとも定番の抽出方法。</p>
-      <div class="flavor-tags">
-        <span class="flavor-tag">クリア</span>
-        <span class="flavor-tag">すっきり</span>
-        <span class="flavor-tag">コントロールしやすい</span>
-        <span class="flavor-tag">初心者向け</span>
-      </div>
-    </div>
-    <div class="brew-body">
-      <p class="steps-title">STEPS</p>
-      <div class="step">
-        <span class="step-num">01</span>
-        <div class="step-content">
-          <p class="step-title">お湯を沸かす</p>
-          <p class="step-desc">90〜93℃が目安。沸騰後1〜2分置くか、温度計で確認する。浅煎りは93℃、深煎りは88℃前後が適温。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">02</span>
-        <div class="step-content">
-          <p class="step-title">フィルターをリンスする</p>
-          <p class="step-desc">ドリッパーにフィルターをセットし、お湯をかけて紙の匂いを落とす。サーバーとドリッパーも温まる。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">03</span>
-        <div class="step-content">
-          <p class="step-title">豆を挽いてセット</p>
-          <p class="step-desc">中挽き〜やや細挽きが基本。1杯あたり豆10〜12gを目安にする。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">04</span>
-        <div class="step-content">
-          <p class="step-title">蒸らし（30秒）</p>
-          <p class="step-desc">全体が湿る程度の少量のお湯（粉量の2倍程度）を注ぎ、30秒待つ。ガスが抜けて成分が引き出しやすくなる。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">05</span>
-        <div class="step-content">
-          <p class="step-title">注湯（2〜3回に分けて）</p>
-          <p class="step-desc">中心から外側へ円を描くように注ぐ。2〜3回に分けて合計150〜180mlを注ぐ。全体の抽出時間は2分30秒〜3分が目安。</p>
-        </div>
-      </div>
-      <div class="tip-box">
-        <p class="tip-label">POINT</p>
-        <p class="tip-text">スケールで重さを計りながら注湯すると再現性が格段に上がる。同じ豆でも毎回同じ味に仕上げやすくなる。</p>
-      </div>
-    </div>
-    <div class="tools-section">
-      <p class="tools-header">必要な器具</p>
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/hario-onlinestore/cabinet/drip/v60/v60-02-clear_1.jpg" alt="HARIO V60 透過ドリッパー" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">HARIO V60 透過ドリッパー</p>
-          <p class="tool-price">550円〜 送料別</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a79bab.f5c878a9.54a79bac.5ae0f9c9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhario-onlinestore%2Fv_30316208455758%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-      <hr class="divider">
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/hario-onlinestore/cabinet/drip/v60/vof-155-w_1.jpg" alt="HARIO V60 ペーパーフィルター" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">HARIO V60 ペーパーフィルター 100枚</p>
-          <p class="tool-price">374円〜 送料別</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a79bab.f5c878a9.54a79bac.5ae0f9c9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhario-onlinestore%2Fvof-155-w%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-      <hr class="divider">
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/hario-onlinestore/cabinet/drip/kettle/vkb-120-b_1.jpg" alt="HARIO ドリップケトル" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">HARIO ドリップケトル・ヴォーノ 細口</p>
-          <p class="tool-price">4,180円〜 送料別</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a79bab.f5c878a9.54a79bac.5ae0f9c9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhario-onlinestore%2Fvkb-120-b%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-      <hr class="divider">
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412022028.jpg" alt="アトラス コーヒーミル" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">アトラス コーヒーミル セラミック臼式</p>
-          <p class="tool-price">1,780円 送料無料</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412022028%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-      <hr class="divider">
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412020000.jpg" alt="コーヒースケール" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">コーヒースケール タイマー付き 0.1g高精度</p>
-          <p class="tool-price">2,180円 送料無料</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7ae47.0e2b9676.54a7ae48.6b64670b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412020000%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- フレンチプレス -->
-  <section class="brew-section" id="frenchpress">
-    <div class="brew-header">
-      <p class="brew-label">FRENCH PRESS</p>
-      <h2 class="brew-title">フレンチプレス</h2>
-      <p class="brew-tagline">豆本来のオイルとコクをダイレクトに味わう。浸漬式で味が安定しやすい。</p>
-      <div class="flavor-tags">
-        <span class="flavor-tag">コク深め</span>
-        <span class="flavor-tag">重厚</span>
-        <span class="flavor-tag">味が安定</span>
-        <span class="flavor-tag">オイル感</span>
-      </div>
-    </div>
-    <div class="brew-body">
-      <p class="steps-title">STEPS</p>
-      <div class="step">
-        <span class="step-num">01</span>
-        <div class="step-content">
-          <p class="step-title">お湯を沸かす・器具を温める</p>
-          <p class="step-desc">92〜95℃が目安。プレス本体にお湯を入れて温めておく。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">02</span>
-        <div class="step-content">
-          <p class="step-title">豆を挽いてセット</p>
-          <p class="step-desc">粗挽きが基本。1杯あたり豆12〜14g。温めたお湯を捨て、粉を入れる。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">03</span>
-        <div class="step-content">
-          <p class="step-title">お湯を注ぐ</p>
-          <p class="step-desc">全体にお湯をかけ、スプーンで軽くかき混ぜる。お湯の量は豆量の15〜16倍が目安（12gなら180〜200ml）。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">04</span>
-        <div class="step-content">
-          <p class="step-title">フタをして4分待つ</p>
-          <p class="step-desc">プランジャーを少し下げてフタをし、4分間そのまま置く。時間で味が決まるシンプルな構造。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">05</span>
-        <div class="step-content">
-          <p class="step-title">プレスしてカップに注ぐ</p>
-          <p class="step-desc">ゆっくりと均等にプランジャーを押し下げる。注いだらすぐにカップに移す（過抽出を防ぐため）。</p>
-        </div>
-      </div>
-      <div class="tip-box">
-        <p class="tip-label">POINT</p>
-        <p class="tip-text">注いだまま放置すると過抽出になる。抽出後はすぐ別の容器に移すか、飲みきるのが理想。</p>
-      </div>
-    </div>
-    <div class="tools-section">
-      <p class="tools-header">必要な器具</p>
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/bodum-brazil.jpg" alt="ボダム ブラジル フレンチプレス" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">ボダム ブラジル フレンチプレス</p>
-          <p class="tool-price">1,650円 送料無料</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2Fbodum-brazil%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-      <hr class="divider">
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412022028.jpg" alt="アトラス コーヒーミル" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">アトラス コーヒーミル セラミック臼式</p>
-          <p class="tool-price">1,780円 送料無料</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412022028%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-      <hr class="divider">
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412020000.jpg" alt="コーヒースケール" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">コーヒースケール タイマー付き 0.1g高精度</p>
-          <p class="tool-price">2,180円 送料無料</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7ae47.0e2b9676.54a7ae48.6b64670b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412020000%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- エスプレッソ -->
-  <section class="brew-section" id="espresso">
-    <div class="brew-header">
-      <p class="brew-label">ESPRESSO</p>
-      <h2 class="brew-title">エスプレッソ</h2>
-      <p class="brew-tagline">高圧で短時間抽出する濃縮コーヒー。ラテやカプチーノのベースにも。</p>
-      <div class="flavor-tags">
-        <span class="flavor-tag">濃厚</span>
-        <span class="flavor-tag">クレマ</span>
-        <span class="flavor-tag">アレンジ自由</span>
-        <span class="flavor-tag">ミルク系に最適</span>
-      </div>
-    </div>
-    <div class="brew-body">
-      <p class="steps-title">STEPS（全自動マシン使用の場合）</p>
-      <div class="step">
-        <span class="step-num">01</span>
-        <div class="step-content">
-          <p class="step-title">マシンを予熱する</p>
-          <p class="step-desc">電源を入れて2〜3分、マシンが温まるまで待つ。予熱が不十分だと抽出温度が安定しない。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">02</span>
-        <div class="step-content">
-          <p class="step-title">豆をセットする</p>
-          <p class="step-desc">全自動マシンはホッパーに豆を入れるだけ。粒度設定がある場合は細挽き〜極細挽きに設定する。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">03</span>
-        <div class="step-content">
-          <p class="step-title">抽出する</p>
-          <p class="step-desc">ボタンを押して抽出。25〜30秒で30〜40ml抽出されるのが基準。表面のクレマ（茶色い泡）が適切な抽出の目安。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">04</span>
-        <div class="step-content">
-          <p class="step-title">（応用）ミルクスチームで仕上げる</p>
-          <p class="step-desc">スチームノズルがあるマシンはミルクを65〜70℃に泡立てる。エスプレッソの上に注いでラテが完成。</p>
-        </div>
-      </div>
-      <div class="tip-box">
-        <p class="tip-label">POINT</p>
-        <p class="tip-text">全自動マシンは定期的な洗浄が必須。週1回のすすぎ洗いと月1回の薬剤洗浄で風味を長期維持できる。</p>
-      </div>
-    </div>
-    <div class="tools-section">
-      <p class="tools-header">必要な器具</p>
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/delonghi/cabinet/magnifica/ecam22110.jpg" alt="デロンギ マグニフィカS" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">デロンギ マグニフィカS 全自動コーヒーマシン</p>
-          <p class="tool-price">59,800円 送料無料</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdelonghi%2Fecam22110%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-      <hr class="divider">
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412022028.jpg" alt="アトラス コーヒーミル" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">アトラス コーヒーミル セラミック臼式</p>
-          <p class="tool-price">1,780円 送料無料</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412022028%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 水出し -->
-  <section class="brew-section" id="coldbrew">
-    <div class="brew-header">
-      <p class="brew-label">COLD BREW</p>
-      <h2 class="brew-title">水出し（コールドブリュー）</h2>
-      <p class="brew-tagline">水でじっくり8〜12時間。苦みを抑えたまろやかな甘みが特徴。</p>
-      <div class="flavor-tags">
-        <span class="flavor-tag">まろやか</span>
-        <span class="flavor-tag">低酸味</span>
-        <span class="flavor-tag">甘み際立つ</span>
-        <span class="flavor-tag">夏に最適</span>
-      </div>
-    </div>
-    <div class="brew-body">
-      <p class="steps-title">STEPS</p>
-      <div class="step">
-        <span class="step-num">01</span>
-        <div class="step-content">
-          <p class="step-title">豆を挽く</p>
-          <p class="step-desc">粗挽きが基本。中挽きでも可。豆量は水の分量に対して1：10〜1：12が目安（水600mlなら豆50〜60g）。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">02</span>
-        <div class="step-content">
-          <p class="step-title">ボトルに粉と水をセット</p>
-          <p class="step-desc">フィルターパックや専用ボトルに粉を入れ、冷水を注ぐ。軽くかき混ぜて全体を湿らせる。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">03</span>
-        <div class="step-content">
-          <p class="step-title">冷蔵庫で8〜12時間置く</p>
-          <p class="step-desc">就寝前にセットして朝に飲むのが定番。時間が長いほど濃くなる。12時間以上はやや渋みが出やすい。</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="step-num">04</span>
-        <div class="step-content">
-          <p class="step-title">フィルターを外してそのまま飲む</p>
-          <p class="step-desc">専用ボトルならフィルターを引き抜くだけで完成。グラスに氷を入れてそのまま注ぐ。</p>
-        </div>
-      </div>
-      <div class="tip-box">
-        <p class="tip-label">POINT</p>
-        <p class="tip-text">浅煎りや中煎りの豆と特に相性がよい。フルーティな酸味やフローラルな香りが水出しで際立ちやすい。</p>
-      </div>
-    </div>
-    <div class="tools-section">
-      <p class="tools-header">必要な器具</p>
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/hario-onlinestore/cabinet/cold/coldbrew/cpcn-14cbr_1.jpg" alt="HARIO カークコーヒーボトル" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">HARIO カークコーヒーボトル（水出し）</p>
-          <p class="tool-price">3,850円 送料無料</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a79bab.f5c878a9.54a79bac.5ae0f9c9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhario-onlinestore%2Fcpcn-14cbr%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-      <hr class="divider">
-      <div class="tool-item">
-        <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412022028.jpg" alt="アトラス コーヒーミル" onerror="this.style.display='none'">
-        <div class="tool-info">
-          <p class="tool-name">アトラス コーヒーミル セラミック臼式</p>
-          <p class="tool-price">1,780円 送料無料</p>
-        </div>
-        <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412022028%2F" target="_blank" rel="noopener">楽天で購入</a>
-      </div>
-    </div>
-  </section>
-
-  <div style="text-align:center;margin-top:16px">
-    <a href="./index.html" style="font-size:12px;color:var(--brown4);text-decoration:none;letter-spacing:.05em">← 診断ページに戻る</a>
+<!-- ペーパードリップ詳細 -->
+<div class="detail-page" id="detail-drip">
+  <div class="brew-nav">
+    <a class="brew-nav-back" href="#" id="back-drip">← 一覧に戻る</a>
+    <span class="brew-nav-other">他の淹れ方を見る</span>
   </div>
+  <div class="brew-header">
+    <p class="brew-label">PAPER DRIP</p>
+    <h2 class="brew-title">ペーパードリップ</h2>
+    <p class="brew-tagline">クリアで雑味のない、すっきりとした味わい。もっとも定番の抽出方法。</p>
+    <div class="flavor-tags">
+      <span class="flavor-tag">クリア</span>
+      <span class="flavor-tag">すっきり</span>
+      <span class="flavor-tag">コントロールしやすい</span>
+      <span class="flavor-tag">初心者向け</span>
+    </div>
+  </div>
+  <div class="brew-body">
+    <p class="steps-title">STEPS</p>
+    <div class="step"><span class="step-num">01</span><div><p class="step-title">お湯を沸かす</p><p class="step-desc">90〜93℃が目安。沸騰後1〜2分置くか、温度計で確認する。浅煎りは93℃、深煎りは88℃前後が適温。</p></div></div>
+    <div class="step"><span class="step-num">02</span><div><p class="step-title">フィルターをリンスする</p><p class="step-desc">ドリッパーにフィルターをセットし、お湯をかけて紙の匂いを落とす。サーバーとドリッパーも温まる。</p></div></div>
+    <div class="step"><span class="step-num">03</span><div><p class="step-title">豆を挽いてセット</p><p class="step-desc">中挽き〜やや細挽きが基本。1杯あたり豆10〜12gを目安にする。</p></div></div>
+    <div class="step"><span class="step-num">04</span><div><p class="step-title">蒸らし（30秒）</p><p class="step-desc">全体が湿る程度の少量のお湯（粉量の2倍程度）を注ぎ、30秒待つ。ガスが抜けて成分が引き出しやすくなる。</p></div></div>
+    <div class="step"><span class="step-num">05</span><div><p class="step-title">注湯（2〜3回に分けて）</p><p class="step-desc">中心から外側へ円を描くように注ぐ。2〜3回に分けて合計150〜180mlを注ぐ。全体の抽出時間は2分30秒〜3分が目安。</p></div></div>
+    <div class="tip-box"><p class="tip-label">POINT</p><p class="tip-text">スケールで重さを計りながら注湯すると再現性が格段に上がる。同じ豆でも毎回同じ味に仕上げやすくなる。</p></div>
+  </div>
+  <div class="tools-section">
+    <p class="tools-header">必要な器具</p>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/hario-onlinestore/cabinet/drip/v60/v60-02-clear_1.jpg" alt="HARIO V60" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">HARIO V60 透過ドリッパー</p><p class="tool-price">550円〜 送料別</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a79bab.f5c878a9.54a79bac.5ae0f9c9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhario-onlinestore%2Fv_30316208455758%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/hario-onlinestore/cabinet/drip/v60/vof-155-w_1.jpg" alt="ペーパーフィルター" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">HARIO V60 ペーパーフィルター 100枚</p><p class="tool-price">374円〜 送料別</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a79bab.f5c878a9.54a79bac.5ae0f9c9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhario-onlinestore%2Fvof-155-w%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/hario-onlinestore/cabinet/drip/kettle/vkb-120-b_1.jpg" alt="ドリップケトル" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">HARIO ドリップケトル・ヴォーノ 細口</p><p class="tool-price">4,180円〜 送料別</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a79bab.f5c878a9.54a79bac.5ae0f9c9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhario-onlinestore%2Fvkb-120-b%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412022028.jpg" alt="コーヒーミル" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">アトラス コーヒーミル セラミック臼式</p><p class="tool-price">1,780円 送料無料</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412022028%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412020000.jpg" alt="コーヒースケール" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">コーヒースケール タイマー付き 0.1g高精度</p><p class="tool-price">2,180円 送料無料</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7ae47.0e2b9676.54a7ae48.6b64670b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412020000%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+  </div>
+  <div class="other-brews">
+    <p class="other-brews-title">他の淹れ方</p>
+    <div class="other-brews-list">
+      <a class="other-brew-btn" href="#frenchpress">🫖 フレンチプレス</a>
+      <a class="other-brew-btn" href="#espresso">⚡ エスプレッソ</a>
+      <a class="other-brew-btn" href="#coldbrew">🧊 水出し</a>
+    </div>
+  </div>
+</div>
 
-</main>
+<!-- フレンチプレス詳細 -->
+<div class="detail-page" id="detail-frenchpress">
+  <div class="brew-nav">
+    <a class="brew-nav-back" href="#" id="back-frenchpress">← 一覧に戻る</a>
+    <span class="brew-nav-other">他の淹れ方を見る</span>
+  </div>
+  <div class="brew-header">
+    <p class="brew-label">FRENCH PRESS</p>
+    <h2 class="brew-title">フレンチプレス</h2>
+    <p class="brew-tagline">豆本来のオイルとコクをダイレクトに味わう。浸漬式で味が安定しやすい。</p>
+    <div class="flavor-tags">
+      <span class="flavor-tag">コク深め</span>
+      <span class="flavor-tag">重厚</span>
+      <span class="flavor-tag">味が安定</span>
+      <span class="flavor-tag">オイル感</span>
+    </div>
+  </div>
+  <div class="brew-body">
+    <p class="steps-title">STEPS</p>
+    <div class="step"><span class="step-num">01</span><div><p class="step-title">お湯を沸かす・器具を温める</p><p class="step-desc">92〜95℃が目安。プレス本体にお湯を入れて温めておく。</p></div></div>
+    <div class="step"><span class="step-num">02</span><div><p class="step-title">豆を挽いてセット</p><p class="step-desc">粗挽きが基本。1杯あたり豆12〜14g。温めたお湯を捨て、粉を入れる。</p></div></div>
+    <div class="step"><span class="step-num">03</span><div><p class="step-title">お湯を注ぐ</p><p class="step-desc">全体にお湯をかけ、スプーンで軽くかき混ぜる。豆量の15〜16倍が目安（12gなら180〜200ml）。</p></div></div>
+    <div class="step"><span class="step-num">04</span><div><p class="step-title">フタをして4分待つ</p><p class="step-desc">プランジャーを少し下げてフタをし、4分間そのまま置く。時間で味が決まるシンプルな構造。</p></div></div>
+    <div class="step"><span class="step-num">05</span><div><p class="step-title">プレスしてカップに注ぐ</p><p class="step-desc">ゆっくりと均等にプランジャーを押し下げる。注いだらすぐカップに移す（過抽出を防ぐため）。</p></div></div>
+    <div class="tip-box"><p class="tip-label">POINT</p><p class="tip-text">注いだまま放置すると過抽出になる。抽出後はすぐ別の容器に移すか、飲みきるのが理想。</p></div>
+  </div>
+  <div class="tools-section">
+    <p class="tools-header">必要な器具</p>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/bodum-brazil.jpg" alt="ボダム ブラジル" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">ボダム ブラジル フレンチプレス</p><p class="tool-price">1,650円 送料無料</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2Fbodum-brazil%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412022028.jpg" alt="コーヒーミル" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">アトラス コーヒーミル セラミック臼式</p><p class="tool-price">1,780円 送料無料</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412022028%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412020000.jpg" alt="コーヒースケール" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">コーヒースケール タイマー付き 0.1g高精度</p><p class="tool-price">2,180円 送料無料</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7ae47.0e2b9676.54a7ae48.6b64670b/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412020000%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+  </div>
+  <div class="other-brews">
+    <p class="other-brews-title">他の淹れ方</p>
+    <div class="other-brews-list">
+      <a class="other-brew-btn" href="#drip">☕ ペーパードリップ</a>
+      <a class="other-brew-btn" href="#espresso">⚡ エスプレッソ</a>
+      <a class="other-brew-btn" href="#coldbrew">🧊 水出し</a>
+    </div>
+  </div>
+</div>
+
+<!-- エスプレッソ詳細 -->
+<div class="detail-page" id="detail-espresso">
+  <div class="brew-nav">
+    <a class="brew-nav-back" href="#" id="back-espresso">← 一覧に戻る</a>
+    <span class="brew-nav-other">他の淹れ方を見る</span>
+  </div>
+  <div class="brew-header">
+    <p class="brew-label">ESPRESSO</p>
+    <h2 class="brew-title">エスプレッソ</h2>
+    <p class="brew-tagline">高圧で短時間抽出する濃縮コーヒー。ラテやカプチーノのベースにも。</p>
+    <div class="flavor-tags">
+      <span class="flavor-tag">濃厚</span>
+      <span class="flavor-tag">クレマ</span>
+      <span class="flavor-tag">アレンジ自由</span>
+      <span class="flavor-tag">ミルク系に最適</span>
+    </div>
+  </div>
+  <div class="brew-body">
+    <p class="steps-title">STEPS（全自動マシン使用の場合）</p>
+    <div class="step"><span class="step-num">01</span><div><p class="step-title">マシンを予熱する</p><p class="step-desc">電源を入れて2〜3分、マシンが温まるまで待つ。予熱が不十分だと抽出温度が安定しない。</p></div></div>
+    <div class="step"><span class="step-num">02</span><div><p class="step-title">豆をセットする</p><p class="step-desc">全自動マシンはホッパーに豆を入れるだけ。粒度設定がある場合は細挽き〜極細挽きに設定する。</p></div></div>
+    <div class="step"><span class="step-num">03</span><div><p class="step-title">抽出する</p><p class="step-desc">ボタンを押して抽出。25〜30秒で30〜40ml抽出されるのが基準。表面のクレマが適切な抽出の目安。</p></div></div>
+    <div class="step"><span class="step-num">04</span><div><p class="step-title">（応用）ミルクスチームで仕上げる</p><p class="step-desc">スチームノズルがあるマシンはミルクを65〜70℃に泡立てる。エスプレッソの上に注いでラテが完成。</p></div></div>
+    <div class="tip-box"><p class="tip-label">POINT</p><p class="tip-text">全自動マシンは定期的な洗浄が必須。週1回のすすぎ洗いと月1回の薬剤洗浄で風味を長期維持できる。</p></div>
+  </div>
+  <div class="tools-section">
+    <p class="tools-header">必要な器具</p>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/delonghi/cabinet/magnifica/ecam22110.jpg" alt="デロンギ" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">デロンギ マグニフィカS 全自動コーヒーマシン</p><p class="tool-price">59,800円 送料無料</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fdelonghi%2Fecam22110%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412022028.jpg" alt="コーヒーミル" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">アトラス コーヒーミル セラミック臼式</p><p class="tool-price">1,780円 送料無料</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412022028%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+  </div>
+  <div class="other-brews">
+    <p class="other-brews-title">他の淹れ方</p>
+    <div class="other-brews-list">
+      <a class="other-brew-btn" href="#drip">☕ ペーパードリップ</a>
+      <a class="other-brew-btn" href="#frenchpress">🫖 フレンチプレス</a>
+      <a class="other-brew-btn" href="#coldbrew">🧊 水出し</a>
+    </div>
+  </div>
+</div>
+
+<!-- 水出し詳細 -->
+<div class="detail-page" id="detail-coldbrew">
+  <div class="brew-nav">
+    <a class="brew-nav-back" href="#" id="back-coldbrew">← 一覧に戻る</a>
+    <span class="brew-nav-other">他の淹れ方を見る</span>
+  </div>
+  <div class="brew-header">
+    <p class="brew-label">COLD BREW</p>
+    <h2 class="brew-title">水出し（コールドブリュー）</h2>
+    <p class="brew-tagline">水でじっくり8〜12時間。苦みを抑えたまろやかな甘みが特徴。</p>
+    <div class="flavor-tags">
+      <span class="flavor-tag">まろやか</span>
+      <span class="flavor-tag">低酸味</span>
+      <span class="flavor-tag">甘み際立つ</span>
+      <span class="flavor-tag">夏に最適</span>
+    </div>
+  </div>
+  <div class="brew-body">
+    <p class="steps-title">STEPS</p>
+    <div class="step"><span class="step-num">01</span><div><p class="step-title">豆を挽く</p><p class="step-desc">粗挽きが基本。豆量は水の分量に対して1：10〜1：12が目安（水600mlなら豆50〜60g）。</p></div></div>
+    <div class="step"><span class="step-num">02</span><div><p class="step-title">ボトルに粉と水をセット</p><p class="step-desc">フィルターパックや専用ボトルに粉を入れ、冷水を注ぐ。軽くかき混ぜて全体を湿らせる。</p></div></div>
+    <div class="step"><span class="step-num">03</span><div><p class="step-title">冷蔵庫で8〜12時間置く</p><p class="step-desc">就寝前にセットして朝に飲むのが定番。時間が長いほど濃くなる。12時間以上はやや渋みが出やすい。</p></div></div>
+    <div class="step"><span class="step-num">04</span><div><p class="step-title">フィルターを外してそのまま飲む</p><p class="step-desc">専用ボトルならフィルターを引き抜くだけで完成。グラスに氷を入れてそのまま注ぐ。</p></div></div>
+    <div class="tip-box"><p class="tip-label">POINT</p><p class="tip-text">浅煎りや中煎りの豆と特に相性がよい。フルーティな酸味やフローラルな香りが水出しで際立ちやすい。</p></div>
+  </div>
+  <div class="tools-section">
+    <p class="tools-header">必要な器具</p>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/hario-onlinestore/cabinet/cold/coldbrew/cpcn-14cbr_1.jpg" alt="HARIO カークボトル" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">HARIO カークコーヒーボトル（水出し）</p><p class="tool-price">3,850円 送料無料</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a79bab.f5c878a9.54a79bac.5ae0f9c9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhario-onlinestore%2Fcpcn-14cbr%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+    <div class="tool-item"><img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/wide02/cabinet/img62/4512412022028.jpg" alt="コーヒーミル" onerror="this.style.display='none'"><div class="tool-info"><p class="tool-name">アトラス コーヒーミル セラミック臼式</p><p class="tool-price">1,780円 送料無料</p></div><a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54a7a3f6.c38eaf07.54a7a3f7.2aedf81e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwide02%2F4512412022028%2F" target="_blank" rel="noopener">楽天で購入</a></div>
+  </div>
+  <div class="other-brews">
+    <p class="other-brews-title">他の淹れ方</p>
+    <div class="other-brews-list">
+      <a class="other-brew-btn" href="#drip">☕ ペーパードリップ</a>
+      <a class="other-brew-btn" href="#frenchpress">🫖 フレンチプレス</a>
+      <a class="other-brew-btn" href="#espresso">⚡ エスプレッソ</a>
+    </div>
+  </div>
+</div>
 
 <footer>
   <p>© 2026 みんなの珈琲 — あなたに合うコーヒー豆を見つける診断サイト</p>
   <p class="affiliate-note">本サイトはAmazonアソシエイト・楽天アフィリエイトに参加しています</p>
 </footer>
+
+<script>
+const BREWS = ['drip','frenchpress','espresso','coldbrew'];
+
+function showPage(hash) {
+  const brew = hash.replace('#','');
+  const tocPage = document.getElementById('toc-page');
+  const details = BREWS.map(b => document.getElementById('detail-' + b));
+
+  if (BREWS.includes(brew)) {
+    // 詳細ページ表示
+    tocPage.style.display = 'none';
+    details.forEach(d => d.style.display = 'none');
+    document.getElementById('detail-' + brew).style.display = 'block';
+    window.scrollTo(0, 0);
+  } else {
+    // TOCページ表示
+    tocPage.style.display = 'block';
+    details.forEach(d => d.style.display = 'none');
+    window.scrollTo(0, 0);
+  }
+}
+
+// 初期表示
+showPage(window.location.hash);
+
+// ハッシュ変化を監視
+window.addEventListener('hashchange', () => {
+  showPage(window.location.hash);
+});
+
+// 「一覧に戻る」ボタン: ハッシュをクリアしてTOCへ
+BREWS.forEach(brew => {
+  const btn = document.getElementById('back-' + brew);
+  if (btn) {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      history.pushState(null, '', window.location.pathname);
+      showPage('');
+    });
+  }
+});
+</script>
 </body>
 </html>
