@@ -63,6 +63,12 @@ body{background:var(--cream);color:var(--text);font-family:'Noto Serif JP',serif
 .tool-price{font-size:11px;color:var(--sub)}
 .tool-link{display:inline-block;font-size:11px;padding:6px 14px;background:var(--brown2);color:var(--cream);text-decoration:none;border-radius:2px;white-space:nowrap;flex-shrink:0;transition:background .15s}
 .tool-link:hover{background:var(--brown1)}
+.grade-details{border-top:1px solid var(--cream2)}
+.grade-summary{padding:10px 16px;font-size:12px;color:var(--brown4);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;background:var(--light)}
+.grade-summary::-webkit-details-marker{display:none}
+.grade-summary::after{content:'▼';font-size:10px;color:var(--brown5)}
+details[open].grade-details .grade-summary::after{content:'▲'}
+.grade-body{}
 .method-divider{display:flex;align-items:center;gap:12px;margin:32px 0 0;opacity:.7}
 .method-divider::before,.method-divider::after{content:'';flex:1;height:1px;background:var(--border)}
 .method-divider-label{font-size:10px;letter-spacing:.3em;color:var(--brown4);white-space:nowrap}
@@ -265,12 +271,27 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
 </div>
 <div class="tools-section" style="margin-bottom:32px">
   <p class="tools-header">必要な器具</p>
+  <details class="grade-details">
+    <summary class="grade-summary">モカポット — 2つのグレードを見る</summary>
+    <div class="grade-body">
   <div class="tool-item">
     <img class="tool-img" src="https://image.rakuten.co.jp/lilyshouse/cabinet/13133280/13139140/lily-j34-328_328_8.jpg" alt="KOZEEY モカポット" onerror="this.style.display='none'">
     <div class="tool-info">
       <p class="tool-name">KOZEEY モカポット 3カップ</p>
       <p class="tool-price">2,936円 送料別</p>
     </div>
+    <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54b17725.4674c488.54b17726.38dc392d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flilyshouse%2Flily-j34-328%2F" target="_blank" rel="noopener">楽天で購入</a>
+  </div>
+  <div class="tool-item">
+    <img class="tool-img" src="https://thumbnail.image.rakuten.co.jp/@0_mall/bialettishop/cabinet/mokaexpress/mokaexpress01.jpg" alt="ビアレッティ モカエキスプレス" onerror="this.style.display='none'">
+    <div class="tool-info">
+      <p class="tool-name">ビアレッティ モカエキスプレス 3カップ</p>
+      <p class="tool-price">6,500円〜 送料無料</p>
+    </div>
+    <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54b17937.96c5416d.54b17938.f00b0afa/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbialettishop%2F0001162_ap%2F" target="_blank" rel="noopener">楽天で購入</a>
+  </div>
+    </div>
+  </details>
     <a class="tool-link" href="https://hb.afl.rakuten.co.jp/ichiba/54b17725.4674c488.54b17726.38dc392d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flilyshouse%2Flily-j34-328%2F" target="_blank" rel="noopener">楽天で購入</a>
   </div>
   <div class="tool-item">
