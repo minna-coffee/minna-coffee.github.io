@@ -162,6 +162,10 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
 <p class="hero-sub">8つの質問に答えるだけで、26種のコーヒー豆の中から<br>あなたの好みにぴったりの一杯を診断します。</p>
 <button class="hero-btn" onclick="startQuiz()">診断をはじめる</button>
 <p class="hero-note">所要時間 約1分 ／ 無料</p>
+<div class="scroll-hint" onclick="document.getElementById('about-quiz').scrollIntoView({behavior:'smooth'})">
+  <span class="scroll-hint-text">もっと見る</span>
+  <span class="scroll-hint-arrow"></span>
+</div>
 </section>
 
 <section class="quiz-section" id="quizSection">
@@ -263,11 +267,6 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
 <div id="resultWrap"></div>
 <button class="restart-btn" onclick="restart()">もう一度診断する</button>
 </div>
-<div class="scroll-hint" onclick="document.getElementById('about-quiz').scrollIntoView({behavior:'smooth'})">
-  <span class="scroll-hint-text">もっと見る</span>
-  <span class="scroll-hint-arrow"></span>
-</div>
-</section>
 
 <section class="lp-section" id="about-quiz">
   <div class="lp-inner">
