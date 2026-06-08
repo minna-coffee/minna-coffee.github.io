@@ -112,6 +112,30 @@ body{background:var(--cream);color:var(--text);font-family:'Noto Serif JP',serif
 .card-alts-body{display:none;border-top:1px solid var(--cream2);padding:8px 10px}
 .card-alts-body.open{display:block}
 .restart-btn{margin-top:16px;font-size:12px;color:var(--brown4);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:'Noto Serif JP',serif}
+.lp-section{background:var(--light);border-top:1px solid var(--cream2);padding:56px 24px}
+.lp-inner{max-width:600px;margin:0 auto}
+.lp-lead{margin-bottom:40px}
+.lp-lead-catch{font-family:'Shippori Mincho',serif;font-size:clamp(18px,4vw,24px);font-weight:600;color:var(--brown1);margin-bottom:16px;line-height:1.5}
+.lp-lead-body{font-size:13px;color:var(--sub);line-height:1.9;margin-bottom:20px}
+.lp-lead-meta{list-style:none;background:var(--cream2);border-left:3px solid var(--brown4);padding:14px 20px;display:flex;flex-direction:column;gap:6px}
+.lp-lead-meta li{font-size:13px;color:var(--brown1);display:flex;gap:10px;align-items:baseline}
+.lp-meta-label{font-size:10px;letter-spacing:.2em;color:var(--brown4);min-width:64px}
+.lp-logic{border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.lp-logic-summary{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:var(--cream2);cursor:pointer;list-style:none;font-size:13px;font-weight:600;color:var(--brown1);gap:8px}
+.lp-logic-summary::-webkit-details-marker{display:none}
+.lp-logic-toggle{font-size:11px;color:var(--brown4);white-space:nowrap;flex-shrink:0}
+details[open] .lp-logic-toggle{content:'▲ 閉じる'}
+details.lp-logic[open] .lp-logic-toggle::before{content:'▲ 閉じる'}
+details.lp-logic:not([open]) .lp-logic-toggle::before{content:'▼ 開く'}
+.lp-logic-toggle{font-size:0}
+.lp-logic-toggle::before{font-size:11px;color:var(--brown4)}
+.lp-logic-body{padding:20px;background:var(--light)}
+.lp-logic-intro{font-size:13px;color:var(--sub);line-height:1.8;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--cream2)}
+.lp-logic-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--cream2)}
+.lp-logic-item:last-child{border:none;padding-bottom:0}
+.lp-logic-num{font-family:'Shippori Mincho',serif;font-size:16px;font-weight:600;color:var(--brown5);min-width:40px;line-height:1.4;flex-shrink:0}
+.lp-logic-title{font-size:13px;font-weight:600;color:var(--brown1);margin-bottom:4px}
+.lp-logic-desc{font-size:12px;color:var(--sub);line-height:1.8}
 footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);border-top:1px solid var(--cream2);background:var(--cream)}
 .affiliate-note{font-size:11px;color:var(--brown4);margin-top:6px}
 @media(max-width:480px){.opts{grid-template-columns:1fr 1fr}}
@@ -236,6 +260,55 @@ footer{text-align:center;padding:40px 24px;font-size:12px;color:var(--brown4);bo
 </div>
 </section>
 
+<section class="lp-section" id="about-quiz">
+  <div class="lp-inner">
+    <div class="lp-lead">
+      <p class="lp-lead-catch">あなただけの特別な一杯に出会う、1分間。</p>
+      <p class="lp-lead-body">世の中にあふれる、たくさんのコーヒー豆。「どれを選べばいいかわからない」「買ってみたけれど好みの味じゃなかった」そんな経験はありませんか？<br>『みんなの珈琲』では、あなたの日常の飲み方や好みの味、淹れる器具、ご予算などに関する<strong>8つの簡単な質問</strong>から、厳選された26種類のコーヒー豆の中からあなたにぴったりの銘柄を導き出します。</p>
+      <ul class="lp-lead-meta">
+        <li><span class="lp-meta-label">所要時間</span>約1分（無料）</li>
+        <li><span class="lp-meta-label">診断ステップ</span>選択肢をタップしていくだけ</li>
+      </ul>
+    </div>
+    <details class="lp-logic">
+      <summary class="lp-logic-summary">
+        <span>確かな満足度をお届けする「8つの診断ロジック」とは？</span>
+        <span class="lp-logic-toggle">▼ 開く</span>
+      </summary>
+      <div class="lp-logic-body">
+        <p class="lp-logic-intro">『みんなの珈琲』の診断システムは、コーヒーの味わいを構成する要素と、お客様のライフスタイルを掛け合わせる独自のロジックに基づいています。</p>
+        <div class="lp-logic-item">
+          <p class="lp-logic-num">01</p>
+          <div><p class="lp-logic-title">飲み方のスタイル（ブラック・ミルク・砂糖）</p><p class="lp-logic-desc">コーヒーの「ボディ（コク）」と「焙煎度」の限界値を決定します。ミルクや砂糖に負けない力強いコクを求めるか、ストレートで繊細な風味を楽しみたいかによって、提案する豆の方向性を絞り込みます。</p></div>
+        </div>
+        <div class="lp-logic-item">
+          <p class="lp-logic-num">02 / 03</p>
+          <div><p class="lp-logic-title">苦味の好み / 酸味の好み</p><p class="lp-logic-desc">コーヒーのキャラクターを決定づける最重要指標です。焙煎度（浅煎り〜深煎り）の選定と、世界各国の産地（テロワール）が持つ特有の酸味の強弱をコントロールし、ファーストインプレッションでの「美味しい」を確実なものにします。</p></div>
+        </div>
+        <div class="lp-logic-item">
+          <p class="lp-logic-num">04</p>
+          <div><p class="lp-logic-title">求める香り・味のイメージ</p><p class="lp-logic-desc">コーヒー豆が持つ「固有のフレーバープロフィール」とマッチングさせます。フローラル、フルーティ、チョコ・ナッツなど、品種や精製方法（ウォッシュド／ナチュラルなど）に由来する多様なアロマから、好みの個性をピンポイントで引き当てます。</p></div>
+        </div>
+        <div class="lp-logic-item">
+          <p class="lp-logic-num">05</p>
+          <div><p class="lp-logic-title">自宅での抽出方法</p><p class="lp-logic-desc">お手持ちの器具（ペーパードリップ、フレンチプレス、エスプレッソなど）によって、豆のポテンシャルを最大限に発揮できる「適切な粒度」や「味わいのトーン」は異なります。お客様の抽出環境に最適な銘柄をご提案します。</p></div>
+        </div>
+        <div class="lp-logic-item">
+          <p class="lp-logic-num">06</p>
+          <div><p class="lp-logic-title">飲む時間帯・シーン</p><p class="lp-logic-desc">朝の覚醒を促す軽快な一杯、デスクワークのお供、夕食後のリラックスタイムなど、生活リズムに調和する濃度感や余韻の長さを考慮しています。</p></div>
+        </div>
+        <div class="lp-logic-item">
+          <p class="lp-logic-num">07</p>
+          <div><p class="lp-logic-title">カフェインの有無</p><p class="lp-logic-desc">体質や時間帯の都合でカフェインを控えたい方のために、安全な除去技術（ウォータープロセス等）で風味を損なわずに仕上げられた高品質なデカフェ（カフェインレス）銘柄へのルートを確保しています。</p></div>
+        </div>
+        <div class="lp-logic-item">
+          <p class="lp-logic-num">08</p>
+          <div><p class="lp-logic-title">1袋あたりの予算目安</p><p class="lp-logic-desc">毎日ガシガシ飲めるハイコストパフォーマンスな日常のブレンドから、農園やマイクロロットまで指定されたこだわりのスペシャルティ・希少銘柄まで、お客様の継続しやすい経済的なセグメントにしっかりと着地させます。</p></div>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
 <footer>
 <p>© 2026 みんなの珈琲 — あなたに合うコーヒー豆を見つける診断サイト</p>
 <p class="affiliate-note">本サイトはAmazonアソシエイト・楽天アフィリエイトに参加しています</p>
