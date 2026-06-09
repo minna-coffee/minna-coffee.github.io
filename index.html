@@ -629,6 +629,7 @@ document.getElementById('hero').style.display='none';
   document.querySelector('.lp-section').style.display='none';
 document.getElementById('quizSection').classList.add('visible');
 window.scrollTo({top:0,behavior:'smooth'});
+  var ts = document.querySelector('.tools-top-section'); if(ts) ts.style.display='none';
 }
 function initQ(i){
 const box=document.querySelector('[data-q="'+i+'"]');
@@ -658,6 +659,7 @@ function bk(i){go(i-1);prog(i);}
 function restart(){Object.keys(A).forEach(k=>delete A[k]);document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));document.querySelectorAll('[id^=b]').forEach(b=>b.disabled=true);go(0);prog(1);}
 function barHtml(label,val){
 return'<div class="bar-row"><div class="bar-label">'+label+'</div><div class="bar-track"><div class="bar-fill" style="width:'+Math.round(val/10*100)+'%"></div></div></div>';
+  var ts = document.querySelector('.tools-top-section'); if(ts) ts.style.display='';
 }
 function toggleAlts(id){
 const body=document.getElementById(id);
