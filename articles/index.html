@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>コーヒーコラム一覧 | みんなの珈琲</title>
+  <meta name="description" content="コーヒー豆の選び方・淹れ方・通販のコツなど、みんなの珈琲のコラム記事一覧です。">
+  <link rel="canonical" href="https://minna-coffee.github.io/articles/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://minna-coffee.github.io/articles/">
+  <meta property="og:title" content="コーヒーコラム一覧 | みんなの珈琲">
+  <meta property="og:description" content="コーヒー豆の選び方・淹れ方・通販のコツなど、みんなの珈琲のコラム記事一覧です。">
+  <meta property="og:image" content="https://minna-coffee.github.io/ogp.svg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f2eb;
+      --cream2: #ede6d8;
+      --brown1: #2c1a0e;
+      --brown2: #5c3520;
+      --brown3: #8b5e3c;
+      --brown4: #b8935a;
+      --brown5: #d4a96a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--brown1); font-family: 'Noto Serif JP', serif; min-height: 100vh; }
+
+    /* HEADER */
+    .site-header { background: var(--cream); border-bottom: 1px solid var(--cream2); padding: 16px 40px; text-align: center; }
+    .site-header a { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--brown1); font-family: 'Shippori Mincho', serif; font-size: 18px; letter-spacing: .1em; }
+
+    /* BREADCRUMB */
+    .breadcrumb { max-width: 860px; margin: 0 auto; padding: 16px 24px; font-size: 12px; color: var(--brown3); display: flex; gap: 8px; align-items: center; }
+    .breadcrumb a { color: var(--brown3); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--brown1); }
+    .breadcrumb span { color: var(--brown4); }
+
+    /* PAGE HEADER */
+    .page-header { max-width: 860px; margin: 0 auto; padding: 8px 24px 40px; }
+    .page-eyebrow { font-size: 11px; letter-spacing: .2em; color: var(--brown3); text-transform: uppercase; margin-bottom: 12px; }
+    .page-title { font-family: 'Shippori Mincho', serif; font-size: clamp(24px, 4vw, 36px); font-weight: 600; color: var(--brown1); margin-bottom: 12px; }
+    .page-desc { font-size: 14px; color: var(--brown3); line-height: 1.8; }
+
+    /* ARTICLE GRID */
+    .articles-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+
+    /* CARD */
+    .article-card { background: #fff; border: 1px solid var(--cream2); border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s; }
+    .article-card:hover { box-shadow: 0 4px 20px rgba(44,26,14,.1); transform: translateY(-2px); }
+    .card-thumb { background: var(--cream2); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+    .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .card-eyebrow { font-size: 10px; letter-spacing: .2em; color: var(--brown3); text-transform: uppercase; }
+    .card-title { font-family: 'Shippori Mincho', serif; font-size: 16px; font-weight: 600; color: var(--brown1); line-height: 1.5; }
+    .card-desc { font-size: 13px; color: var(--brown3); line-height: 1.7; flex: 1; }
+    .card-meta { font-size: 12px; color: var(--brown4); margin-top: 4px; display: flex; justify-content: space-between; align-items: center; }
+    .card-link { font-size: 13px; color: var(--brown2); display: inline-flex; align-items: center; gap: 4px; }
+    .card-link::after { content: '→'; }
+
+    /* CTA */
+    .cta-block { background: var(--brown1); color: var(--cream); border-radius: 10px; padding: 36px 32px; text-align: center; margin-top: 48px; }
+    .cta-block .cta-label { font-size: 12px; letter-spacing: .2em; color: var(--brown5); text-transform: uppercase; margin-bottom: 12px; }
+    .cta-block h3 { font-family: 'Shippori Mincho', serif; font-size: 22px; font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
+    .cta-block p { font-size: 14px; color: var(--brown5); margin-bottom: 24px; line-height: 1.8; }
+    .cta-btn { display: inline-block; background: var(--brown4); color: #fff; text-decoration: none; padding: 14px 36px; border-radius: 4px; font-size: 15px; }
+    .cta-btn:hover { background: var(--brown5); }
+
+    @media (max-width: 600px) {
+      .articles-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://minna-coffee.github.io/">
+    <span>☕</span> みんなの珈琲
+  </a>
+</header>
+
+<nav class="breadcrumb">
+  <a href="https://minna-coffee.github.io/">ホーム</a>
+  <span>›</span>
+  コラム
+</nav>
+
+<div class="page-header">
+  <p class="page-eyebrow">COLUMN</p>
+  <h1 class="page-title">コーヒーコラム</h1>
+  <p class="page-desc">豆の選び方・淹れ方・通販のコツまで、コーヒーをもっと楽しむための記事をまとめました。</p>
+</div>
+
+<div class="articles-wrap">
+  <div class="articles-grid">
+
+    <a class="article-card" href="https://minna-coffee.github.io/articles/find-your-coffee-type.html">
+      <div class="card-thumb">☕</div>
+      <div class="card-body">
+        <p class="card-eyebrow">BEAN SELECTION GUIDE</p>
+        <h2 class="card-title">自分に合うコーヒー豆の見つけ方｜苦み・酸味・コクで選ぶタイプ別ガイド</h2>
+        <p class="card-desc">焙煎度・産地・タイプ別に自分に合う豆の見つけ方を解説。8問の診断で26種類の中から最適な1本がわかります。</p>
+        <div class="card-meta">
+          <span>2026年6月 · 読了5分</span>
+          <span class="card-link">読む</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="article-card" href="https://minna-coffee.github.io/articles/coffee-online-guide.html">
+      <div class="card-thumb">📦</div>
+      <div class="card-body">
+        <p class="card-eyebrow">ONLINE SHOPPING GUIDE</p>
+        <h2 class="card-title">コーヒー豆を通販で失敗せずに選ぶ5つのポイント</h2>
+        <p class="card-desc">焙煎日の確認・購入量の目安・口コミの読み方まで、通販でコーヒー豆を買うときの失敗しない選び方を解説。</p>
+        <div class="card-meta">
+          <span>2026年6月 · 読了5分</span>
+          <span class="card-link">読む</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="article-card" href="https://minna-coffee.github.io/articles/coffee-cups-guide.html">
+      <div class="card-thumb">⚖️</div>
+      <div class="card-body">
+        <p class="card-eyebrow">COST & QUANTITY GUIDE</p>
+        <h2 class="card-title">コーヒー豆100gで何杯飲める？量・値段・コスパの完全ガイド</h2>
+        <p class="card-desc">ドリップ・フレンチプレス・エスプレッソ別の杯数目安と、1杯あたりのコストをかんたん計算ツールで確認できます。</p>
+        <div class="card-meta">
+          <span>2026年6月 · 読了4分</span>
+          <span class="card-link">読む</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="cta-block">
+    <p class="cta-label">COFFEE DIAGNOSIS</p>
+    <h3>どの豆が自分に合う？<br>8問で診断します</h3>
+    <p>記事を読む前に、まず自分の好みを把握しましょう。<br>26種類の中から最適な1本を提案します。</p>
+    <a class="cta-btn" href="https://minna-coffee.github.io/">診断をはじめる →</a>
+  </div>
+</div>
+
+</body>
+</html>
