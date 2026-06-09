@@ -769,47 +769,33 @@ buyHtml+
 const toolsHtml = buildToolsSection(ans.brew);
 document.getElementById('resultWrap').querySelector('.alts-section')?.insertAdjacentHTML('afterend', toolsHtml);
 go('res');prog(8);
-  // Xシェアボタン追加
-  (function(){
-    var originEl = document.querySelector('#resultWrap .result-origin');
-    var nameEl = document.querySelector('#resultWrap .result-name');
-    if(!originEl || !nameEl) return;
-    var originText = originEl.textContent.trim();
-    var beanName = nameEl.textContent.trim();
-    // 産地名からOGP画像ファイルを決定
-    var ogpMap = {
-      'エチオピア': 'ethiopia',
-      'ブラジル': 'brazil',
-      'コロンビア': 'colombia',
-      'マンデリン': 'mandelin',
-      'グアテマラ': 'guatemala'
-    };
-    var ogpFile = 'ogp.svg'; // デフォルト
-    Object.keys(ogpMap).forEach(function(k){
-      if(originText.includes(k) || beanName.includes(k)) ogpFile = 'ogp/' + ogpMap[k] + '.png';
-    });
-    // OGPメタタグを動的に更新
-    var ogImg = document.querySelector('meta[property="og:image"]');
-    var twImg = document.querySelector('meta[name="twitter:image"]');
-    if(ogImg) ogImg.content = 'https://minna-coffee.github.io/' + ogpFile;
-    if(twImg) twImg.content = 'https://minna-coffee.github.io/' + ogpFile;
-    // シェアテキスト
-    var shareText = encodeURIComponent('私のコーヒーは「' + beanName + '」でした☕
-あなたも診断してみて → https://minna-coffee.github.io
-#みんなの珈琲 #コーヒー診断');
-    var shareUrl = 'https://twitter.com/intent/tweet?text=' + shareText;
-    // シェアボタンをresult-heroに追加
-    var hero = document.querySelector('#resultWrap .result-hero');
-    if(hero && !hero.querySelector('.x-share-btn')){
-      var btn = document.createElement('a');
-      btn.className = 'x-share-btn';
-      btn.href = shareUrl;
-      btn.target = '_blank';
-      btn.rel = 'noopener';
-      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> この結果をXでシェア';
-      hero.appendChild(btn);
-    }
-  })();
+  addShareBtn();
+}
+
+function addShareBtn(){
+  var originEl = document.querySelector('#resultWrap .result-origin');
+  var nameEl = document.querySelector('#resultWrap .result-name');
+  if(!originEl || !nameEl) return;
+  var originText = originEl.textContent;
+  var beanName = nameEl.textContent.trim();
+  var ogpMap = {'エチオピア':'ethiopia','ブラジル':'brazil','コロンビア':'colombia','マンデリン':'mandelin','グアテマラ':'guatemala'};
+  var ogpFile = 'ogp.svg';
+  Object.keys(ogpMap).forEach(function(k){ if(originText.indexOf(k)>-1||beanName.indexOf(k)>-1) ogpFile='ogp/'+ogpMap[k]+'.png'; });
+  var ogImg = document.querySelector('meta[property="og:image"]');
+  var twImg = document.querySelector('meta[name="twitter:image"]');
+  if(ogImg) ogImg.content='https://minna-coffee.github.io/'+ogpFile;
+  if(twImg) twImg.content='https://minna-coffee.github.io/'+ogpFile;
+  var shareText = encodeURIComponent('私のコーヒーは「'+beanName+'」でした☕ あなたも診断してみて → https://minna-coffee.github.io #みんなの珈琲');
+  var hero = document.querySelector('#resultWrap .result-hero');
+  if(hero && !hero.querySelector('.x-share-btn')){
+    var btn = document.createElement('a');
+    btn.className='x-share-btn';
+    btn.href='https://twitter.com/intent/tweet?text='+shareText;
+    btn.target='_blank';
+    btn.rel='noopener';
+    btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.631L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> この結果をXでシェア';
+    hero.appendChild(btn);
+  }
 }
 for(let i=0;i<N;i++)initQ(i);prog(1);
 </script>
