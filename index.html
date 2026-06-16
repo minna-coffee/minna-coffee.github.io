@@ -69,10 +69,7 @@ body{background:var(--cream);color:var(--text);font-family:'Noto Serif JP',serif
 .rl{color:var(--sub)}.rv{font-weight:600;color:var(--brown1);text-align:right;max-width:65%}
 .profile-section{margin-top:18px}
 .profile-title{font-size:11px;letter-spacing:.15em;color:var(--sub);margin-bottom:12px}
-.bar-row{margin-bottom:9px}
-.bar-label{font-size:12px;color:var(--sub);margin-bottom:3px}
-.bar-track{height:4px;background:var(--cream2);border-radius:2px;overflow:hidden}
-.bar-fill{height:100%;background:var(--brown3);border-radius:2px;transition:width .8s ease}.radar-wrap{display:flex;flex-direction:column;align-items:center;margin:12px 0 8px}.radar-canvas{display:block}
+.radar-wrap{display:flex;flex-direction:column;align-items:center;margin:12px 0 8px}.radar-canvas{display:block}
 .why-box{background:var(--cream2);border-radius:4px;padding:14px 16px;margin-top:16px;font-size:13px;line-height:1.7;color:var(--sub)}
 .warn-box{background:#fff8e8;border:1px solid #e8d08a;border-radius:4px;padding:12px 14px;margin-top:10px;font-size:12px;line-height:1.6;color:#7a5f10}
 /* 購入セクション（松竹梅） */
@@ -665,10 +662,6 @@ function go(i){document.querySelectorAll('.step').forEach(s=>s.classList.remove(
 function nx(i){grab(i);go(i+1);prog(i+2);}
 function bk(i){go(i-1);prog(i);}
 function restart(){Object.keys(A).forEach(k=>delete A[k]);document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));document.querySelectorAll('[id^=b]').forEach(b=>b.disabled=true);go(0);prog(1);}
-function barHtml(label,val){
-return'<div class="bar-row"><div class="bar-label">'+label+'</div><div class="bar-track"><div class="bar-fill" style="width:'+Math.round(val/10*100)+'%"></div></div></div>';
-  var ts = document.querySelector('.tools-top-section'); if(ts) ts.style.display='';
-}
 function drawRadar(canvasId,b){
 const c=document.getElementById(canvasId);
 if(!c)return;
@@ -798,7 +791,6 @@ document.getElementById('resultWrap').innerHTML=
 '<div class="rrow"><span class="rl">予算の目安</span><span class="rv">'+PRLBL[ans.budget]+'</span></div>'+
 '<div class="profile-section"><div class="profile-title">FLAVOR PROFILE</div>'+
 '<div class="radar-wrap"><canvas id="radarChart" class="radar-canvas" width="220" height="220"></canvas></div>'+
-barHtml('ボディ',top.body)+barHtml('酸味',top.acid)+barHtml('アロマ',top.aroma)+barHtml('甘さ',top.sweet)+barHtml('クリーンさ',top.clar)+
 '</div>'+
 '<div class="why-box">'+why+'</div>'+warn+
 (cafNote?'<div class="why-box" style="margin-top:10px">'+cafNote+'</div>':'')+
