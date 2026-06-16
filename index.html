@@ -666,7 +666,7 @@ function drawRadar(canvasId,b){
 const c=document.getElementById(canvasId);
 if(!c)return;
 const ctx=c.getContext('2d');
-const W=220,H=220,cx=W/2,cy=H/2,R=80,MAX=10;
+const W=260,H=260,cx=W/2,cy=H/2,R=90,MAX=10;
 const AXES=[['苦味',b.bit],['酸味',b.acid],['コク',b.body],['甘み',b.sweet],['香り',b.aroma],['すっきり感',b.clar]];
 const N=AXES.length;
 ctx.clearRect(0,0,W,H);
@@ -687,7 +687,7 @@ ctx.closePath();ctx.fillStyle='rgba(139,94,60,0.22)';ctx.fill();ctx.strokeStyle=
 for(let i=0;i<N;i++){const v=AXES[i][1];const[x,y]=pt(R*v/MAX,i);ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fillStyle='#8b5e3c';ctx.fill();}
 // ラベル
 ctx.font='bold 10px sans-serif';ctx.fillStyle='#6b5340';ctx.textAlign='center';ctx.textBaseline='middle';
-for(let i=0;i<N;i++){const[x,y]=pt(R,i);const ox=(x-cx)*0.28,oy=(y-cy)*0.28;ctx.fillText(AXES[i][0],x+ox,y+oy);}
+for(let i=0;i<N;i++){const[x,y]=pt(R,i);const ox=(x-cx)*0.32,oy=(y-cy)*0.32;ctx.fillText(AXES[i][0],x+ox,y+oy);}
 }
 
 function toggleAlts(id){
@@ -790,7 +790,7 @@ document.getElementById('resultWrap').innerHTML=
 '<div class="rrow"><span class="rl">カフェイン</span><span class="rv">'+(ans.caffeine==='decaf'?'デカフェ豆のみで選定':ans.caffeine==='moderate'?'アラビカ中心・午後は控えめに':'カフェイン制限なし')+'</span></div>'+
 '<div class="rrow"><span class="rl">予算の目安</span><span class="rv">'+PRLBL[ans.budget]+'</span></div>'+
 '<div class="profile-section"><div class="profile-title">FLAVOR PROFILE</div>'+
-'<div class="radar-wrap"><canvas id="radarChart" class="radar-canvas" width="220" height="220"></canvas></div>'+
+'<div class="radar-wrap"><canvas id="radarChart" class="radar-canvas" width="260" height="260"></canvas></div>'+
 '</div>'+
 '<div class="why-box">'+why+'</div>'+warn+
 (cafNote?'<div class="why-box" style="margin-top:10px">'+cafNote+'</div>':'')+
